@@ -8,6 +8,8 @@ import org.junit.Test;
 import java.io.*;
 
 public class LoggerTest implements SysoutCaptureAndAssertionAbility {
+    private static final String SEP = System.lineSeparator();
+
     //region given
     @Before
     public void setUpSystemOut() throws IOException {
@@ -45,9 +47,6 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         //endregion
     }
 
-    /*
-    TODO: implement Logger solution to match specification as tests
-
     @Test
     public void shouldLogChar() throws IOException {
         //region when
@@ -59,20 +58,6 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         assertSysoutContains("char: ");
         assertSysoutContains("a");
         assertSysoutContains("b");
-        //endregion
-    }
-
-    @Test
-    public void shouldLogString() throws IOException {
-        //region when
-        Logger.log("test string 1");
-        Logger.log("other str");
-        //endregion
-
-        //region then
-        assertSysoutContains("string: ");
-        assertSysoutContains("test string 1");
-        assertSysoutContains("other str");
         //endregion
     }
 
@@ -89,6 +74,25 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         assertSysoutContains("false");
         //endregion
     }
+
+    /*
+    TODO: implement Logger solution to match specification as tests
+
+/*
+    @Test
+    public void shouldLogString() throws IOException {
+        //region when
+        Logger.log("test string 1");
+        Logger.log("other str");
+        //endregion
+
+        //region then
+        assertSysoutContains("string: ");
+        assertSysoutContains("test string 1");
+        assertSysoutContains("other str");
+        //endregion
+    }
+
 
     @Test
     public void shouldLogReference() throws IOException {
