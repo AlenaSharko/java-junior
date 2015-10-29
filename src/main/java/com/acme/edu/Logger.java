@@ -1,23 +1,37 @@
 package com.acme.edu;
 
 public class Logger {
+    /**
+     * print integer numbers in the console 
+     * with decoration - "primitive: "
+     * @author Alena Sharko
+     * @param message integer number
+     */
     public static void log(int message) {
-        PrintStr("primitive: " + message);
+        printStr("primitive: " + message);
     }
 
-    public static void log(byte message) {
-        PrintStr("primitive: " + message);
-    }
-
+    /**
+     * print integer or charecter numbers in the console 
+     * with decoration - "char: "
+     * @author Alena Sharko
+     * @param message
+     */
     public static void log(char message) {
-        PrintStr("char: " + message);
+        printStr("char: " + message);
     }
 
+    /**
+     * print boolean value in the console 
+     * with decoration - "primitive: "
+     * @author Alena Sharko
+     * @param message
+     */
     public static void log(boolean message) {
-        PrintStr("primitive: " + message);
+        printStr("primitive: " + message);
     }
 
-    public static void PrintStr(String s) {
+    private static void printStr(String s) {
         System.out.println(s);
     }
 }
