@@ -10,15 +10,31 @@ public class Logger {
 
     static int sum = 0;
     static boolean chek;
+    //enum Decoration {}
+    public static final String PRIMITIVE = "primitive: ";
+    public static final String CHAR = "char: ";
+    public static final String REFERENCE = "reference: ";
+    public static final String STR = "string: ";
+    public static final String AD = "@";
+
+
 
     /**
-     * print sum integer numbers in the console
+     * print sum integer numbers if its not MAX Value in the console
      * with decoration - "primitive: "
      *
      * @param message integer number
      */
     public static void log(int message) {
-        sum += message;
+        if(message == Integer.MAX_VALUE ) {
+            if(chek){
+                printStr(PRIMITIVE + sum);
+                sum = 0;
+            }
+            printStr(PRIMITIVE + message);
+        } else{
+            sum += message;
+        }
         chek = true;
     }
 
@@ -29,7 +45,7 @@ public class Logger {
      * @param message char value
      */
     public static void log(char message) {
-        printStr("char: " + message);
+        printStr(CHAR + message);
     }
 
     /**
@@ -39,7 +55,7 @@ public class Logger {
      * @param message boolean value
      */
     public static void log(boolean message) {
-        printStr("primitive: " + message);
+        printStr(PRIMITIVE + message);
     }
 
     /**
@@ -49,10 +65,10 @@ public class Logger {
      */
     public static void log(String message) {
         if (sum != 0) {
-            printStr("primitive: " + sum);
+            printStr(PRIMITIVE + sum);
             sum = 0;
         }
-        printStr("string: " + message);
+        printStr(STR + message);
         chek = false;
     }
 
@@ -62,14 +78,14 @@ public class Logger {
      * @param message any value
      */
     public static void log(Object message) {
-        printStr("reference: " + message + "@");
+        printStr(REFERENCE + message + AD);
     }
 
     /**
      * print final sum
      */
     public static void close() {
-        if (chek) printStr("primitive: " + sum);
+        if (chek) printStr(PRIMITIVE + sum);
     }
 
     private static void printStr(String s) {
