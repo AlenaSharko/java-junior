@@ -1,5 +1,7 @@
 package com.acme.edu;
 
+import java.util.Objects;
+
 public class Logger {
     /**
      * print integer numbers in the console 
@@ -30,6 +32,16 @@ public class Logger {
     public static void log(boolean message) {
         printStr("primitive: " + message);
     }
+
+    /**
+     * print string value in console
+     * @author Alena Sharko
+     * @param message
+     */
+    public static void log(String message) {
+        printStr("string: " + message);
+    }
+
 
     private static void printStr(String s) {
         System.out.println(s);

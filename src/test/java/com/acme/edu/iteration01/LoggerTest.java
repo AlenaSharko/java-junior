@@ -75,10 +75,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         //endregion
     }
 
-    /*
-    TODO: implement Logger solution to match specification as tests
 
-/*
     @Test
     public void shouldLogString() throws IOException {
         //region when
@@ -94,17 +91,17 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     }
 
 
-    @Test
-    public void shouldLogReference() throws IOException {
-        //region when
-        Logger.log(new Object());
-        //endregion
+//    @Test
+//    public void shouldLogReference() throws IOException {
+//        //region when
+//        Logger.log(new Object());
+//        //endregion
+//
+//        //region then
+//        assertSysoutContains("reference: ");
+//        assertSysoutContains("@");
+//        //endregion
+//    }
 
-        //region then
-        assertSysoutContains("reference: ");
-        assertSysoutContains("@");
-        //endregion
-    }
 
-    */
 }
