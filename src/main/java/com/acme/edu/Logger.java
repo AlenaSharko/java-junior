@@ -1,12 +1,16 @@
 package com.acme.edu;
 
-import java.util.Objects;
+/**
+ * print different values in console
+ * @author Alena Sharko
+ *
+ */
 
 public class Logger {
     /**
-     * print integer numbers in the console 
+     * print integer numbers in the console
      * with decoration - "primitive: "
-     * @author Alena Sharko
+     *
      * @param message integer number
      */
     public static void log(int message) {
@@ -14,20 +18,20 @@ public class Logger {
     }
 
     /**
-     * print integer or charecter numbers in the console 
+     * print integer or charecter numbers in the console
      * with decoration - "char: "
-     * @author Alena Sharko
-     * @param message
+     *
+     * @param message char value
      */
     public static void log(char message) {
         printStr("char: " + message);
     }
 
     /**
-     * print boolean value in the console 
+     * print boolean value in the console
      * with decoration - "primitive: "
-     * @author Alena Sharko
-     * @param message
+     *
+     * @param message boolean value
      */
     public static void log(boolean message) {
         printStr("primitive: " + message);
@@ -35,13 +39,21 @@ public class Logger {
 
     /**
      * print string value in console
-     * @author Alena Sharko
-     * @param message
+     *
+     * @param message String value
      */
     public static void log(String message) {
         printStr("string: " + message);
     }
 
+    /**
+     * print any objects in console
+     *
+     * @param message any value
+     */
+    public static void log(Object message) {
+        printStr("reference: " + message + "@");
+    }
 
     private static void printStr(String s) {
         System.out.println(s);

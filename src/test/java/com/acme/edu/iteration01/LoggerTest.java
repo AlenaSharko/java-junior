@@ -91,17 +91,17 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     }
 
 
-//    @Test
-//    public void shouldLogReference() throws IOException {
-//        //region when
-//        Logger.log(new Object());
-//        //endregion
-//
-//        //region then
-//        assertSysoutContains("reference: ");
-//        assertSysoutContains("@");
-//        //endregion
-//    }
+    @Test
+    public void shouldLogReference() throws IOException {
+        //region when
+        Logger.log(new Object());
+        //endregion
+
+        //region then
+        assertSysoutContains("reference: ");
+        assertSysoutContains("@");
+        //endregion
+    }
 
 
 }
