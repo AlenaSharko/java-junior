@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.*;
+import org.junit.After;
 
 public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     private static final String SEP = System.lineSeparator();
@@ -16,6 +17,11 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         captureSysout();
     }
     //endregion
+
+    @After
+    public void tearDown() {
+        resetOut();
+    }
 
     @Test
     public void shouldLogInteger() throws IOException {

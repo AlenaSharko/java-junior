@@ -2,19 +2,26 @@ package com.acme.edu;
 
 /**
  * print different values in console
- * @author Alena Sharko
  *
+ * @author Alena Sharko
  */
 
 public class Logger {
     /**
-     * print integer numbers in the console
+     * the sum of the integers
+     */
+    public static int sum = 0;
+
+    /**
+     * print sum integer numbers in the console
      * with decoration - "primitive: "
      *
      * @param message integer number
      */
     public static void log(int message) {
-        printStr("primitive: " + message);
+        sum += message;
+        if (sum == 0) printStr("primitive: " + message);
+
     }
 
     /**
@@ -43,6 +50,10 @@ public class Logger {
      * @param message String value
      */
     public static void log(String message) {
+        if (sum != 0) {
+            printStr("primitive: " + sum);
+            sum = 0;
+        }
         printStr("string: " + message);
     }
 
