@@ -10,13 +10,11 @@ public class Logger {
 
     static int sum = 0;
     static boolean chek;
-    //enum Decoration {}
     public static final String PRIMITIVE = "primitive: ";
     public static final String CHAR = "char: ";
     public static final String REFERENCE = "reference: ";
     public static final String STR = "string: ";
     public static final String AD = "@";
-
 
 
     /**
@@ -26,13 +24,13 @@ public class Logger {
      * @param message integer number
      */
     public static void log(int message) {
-        if(message == Integer.MAX_VALUE ) {
-            if(chek){
+        if (message == Integer.MAX_VALUE) {
+            if (chek) {
                 printStr(PRIMITIVE + sum);
                 sum = 0;
             }
             printStr(PRIMITIVE + message);
-        } else{
+        } else {
             sum += message;
         }
         chek = true;
