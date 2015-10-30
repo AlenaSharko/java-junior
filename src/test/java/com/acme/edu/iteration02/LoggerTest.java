@@ -25,6 +25,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         Logger.log(2);
         Logger.log("str 2");
         Logger.log(0);
+        Logger.close();
         //endregion
 
         //region then

@@ -13,6 +13,11 @@ public class Logger {
     public static int sum = 0;
 
     /**
+     * show string or number
+     */
+    public static boolean chek;
+
+    /**
      * print sum integer numbers in the console
      * with decoration - "primitive: "
      *
@@ -20,8 +25,7 @@ public class Logger {
      */
     public static void log(int message) {
         sum += message;
-        if (sum == 0) printStr("primitive: " + message);
-
+        chek = true;
     }
 
     /**
@@ -55,6 +59,7 @@ public class Logger {
             sum = 0;
         }
         printStr("string: " + message);
+        chek = false;
     }
 
     /**
@@ -66,7 +71,16 @@ public class Logger {
         printStr("reference: " + message + "@");
     }
 
+    /**
+     * print final sum
+     */
+    public static void close() {
+        if (chek) printStr("primitive: " + sum);
+    }
+
     private static void printStr(String s) {
         System.out.println(s);
     }
+
+
 }
