@@ -7,15 +7,9 @@ package com.acme.edu;
  */
 
 public class Logger {
-    /**
-     * the sum of the integers
-     */
-    public static int sum = 0;
 
-    /**
-     * show string or number
-     */
-    public static boolean chek;
+    static int sum = 0;
+    static boolean chek;
 
     /**
      * print sum integer numbers in the console
