@@ -24,7 +24,7 @@ public class Logger {
      * @param message integer number
      */
     public static void log(int message) {
-        if (message == Integer.MAX_VALUE) {
+        if (message == Integer.MAX_VALUE | message == Byte.MAX_VALUE) {
             if (chek) {
                 printStr(PRIMITIVE + sum);
                 sum = 0;
