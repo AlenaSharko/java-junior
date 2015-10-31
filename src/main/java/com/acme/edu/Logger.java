@@ -140,12 +140,34 @@ public class Logger {
         print(REFERENCE + AD + message.toString());
     }
 
+    /**
+     * Print array in the console
+     * @param arr array of ineger
+     */
     public static void log(int[] arr) {
-        printarr(arr);
+        StringBuilder array = new StringBuilder("{");
+        for (int i = 0; i < arr.length - 1; i++) {
+            array.append(arr[i]).append(", ");
+        }
+        array.append(arr[arr.length - 1]).append("}");
+        print(PRIMITIVEAR + array);
     }
 
+    /**
+     * Print matrix in the console
+     * @param arr integer matrix
+     */
     public static void log(int[][] arr) {
-        printduoarr(arr);
+        StringBuilder array = new StringBuilder(" {\n");
+        for (int[] anArr : arr) {
+            array.append("{");
+            for (int j = 0; j < anArr.length - 1; j++) {
+                array.append(anArr[j]).append(", ");
+            }
+            array.append(anArr[arr.length - 1]).append("}\n");
+        }
+        array.append("}");
+        print(PRIMITIVEMATR + array);
     }
 
 
@@ -200,25 +222,7 @@ public class Logger {
         sum = 0;
     }
 
-    private static void printarr(int[] arr) {
-        System.out.print(PRIMITIVEAR + "{");
-        for (int i = 0; i < arr.length - 1; i++) {
-            System.out.print(arr[i] + ", ");
-        }
-        print(arr[arr.length - 1] + "}");
-    }
 
-    private static void printduoarr(int[][] arr) {
-        System.out.println(PRIMITIVEMATR + " {");
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print("{");
-            for (int j = 0; j < arr[i].length - 1; j++) {
-                System.out.print(arr[i][j] + ", ");
-            }
-            print(arr[i][arr.length - 1] + "}");
-        }
-        System.out.println("}");
-    }
 
 
 }
