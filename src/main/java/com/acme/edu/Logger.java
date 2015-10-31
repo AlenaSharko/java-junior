@@ -141,35 +141,43 @@ public class Logger {
     }
 
     /**
-     * Print array in the console
+     * Print integer array in the console
+     *
      * @param arr array of ineger
      */
     public static void log(int[] arr) {
-        StringBuilder array = new StringBuilder("{");
-        for (int i = 0; i < arr.length - 1; i++) {
-            array.append(arr[i]).append(", ");
-        }
-        array.append(arr[arr.length - 1]).append("}");
+        StringBuilder array = new StringBuilder("");
+        array.append(makeOneString(arr));
         print(PRIMITIVEAR + array);
     }
 
     /**
-     * Print matrix in the console
-     * @param arr integer matrix
+     * Print any string values in the console
+     *
+     * @param strings string array
      */
-    public static void log(int[][] arr) {
+    public static void log(String... strings) {
+        StringBuilder array = new StringBuilder();
+        for (String string : strings) {
+            array.append(string).append("\n");
+        }
+        print(PRIMITIVEAR + array);
+    }
+
+
+    /**
+     * Print matrix in the console
+     *
+     * @param matrix integer matrix
+     */
+    public static void log(int[][] matrix) {
         StringBuilder array = new StringBuilder(" {\n");
-        for (int[] anArr : arr) {
-            array.append("{");
-            for (int j = 0; j < anArr.length - 1; j++) {
-                array.append(anArr[j]).append(", ");
-            }
-            array.append(anArr[arr.length - 1]).append("}\n");
+        for (int[] xi : matrix) {
+            array.append(makeOneString(xi)).append("\n");
         }
         array.append("}");
         print(PRIMITIVEMATR + array);
     }
-
 
     /**
      * print final integer sum of last string value
@@ -222,7 +230,14 @@ public class Logger {
         sum = 0;
     }
 
-
+    private static String makeOneString(int[] arr) {
+        StringBuilder oneString = new StringBuilder("{");
+        for (int i = 0; i < arr.length - 1; i++) {
+            oneString.append(arr[i]).append(", ");
+        }
+        oneString.append(arr[arr.length - 1]).append("}");
+        return oneString.toString();
+    }
 
 
 }
