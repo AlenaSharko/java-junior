@@ -32,6 +32,14 @@ public class Logger {
      * Decoration - X
      */
     public static final String X = "(x";
+    /**
+     * Decoraton for arrays
+     */
+    public static final String PRIMITIVEAR = "primitives array: ";
+    /**
+     * Decoration for matrix
+     */
+    public static final String PRIMITIVEMATR = "primitives matrix:";
     //end region
 
     private static int sum = 0;
@@ -52,11 +60,33 @@ public class Logger {
             caseMax(message);
             return;
         }
-        if (!chekInt & startFlag) {
+        if ((!chekInt) & startFlag) {
             printStr(prevString);
         }
         sum += message;
         chekInt = true;
+        startFlag = true;
+    }
+
+    /**
+     * print previous integer or byte values in console
+     *
+     * @param message String value
+     */
+    public static void log(String message) {
+        if (startFlag & chekInt) {
+            printSum(sum);
+        }
+        if ((!chekInt) & startFlag) {
+            if (findStringNum(message) == lastChar) {
+                countString++;
+            } else {
+                printStr(prevString);
+            }
+        }
+        lastChar = findStringNum(message);
+        prevString = message;
+        chekInt = false;
         startFlag = true;
     }
 
@@ -71,7 +101,7 @@ public class Logger {
             caseMax(message);
             return;
         }
-        if (!chekInt & startFlag) {
+        if ((!chekInt) & startFlag) {
             printStr(prevString);
         }
         sum += message;
@@ -100,28 +130,6 @@ public class Logger {
         print(PRIMITIVE + message);
     }
 
-    /**
-     * print previous integer or byte values in console
-     *
-     * @param message String value
-     */
-    public static void log(String message) {
-        if (chekInt & startFlag) {
-            printSum(sum);
-        }
-        if (!chekInt & startFlag) {
-            if (findStringNum(message) == lastChar) {
-                countString++;
-            } else {
-                printStr(prevString);
-            }
-        }
-        lastChar = findStringNum(message);
-        prevString = message;
-        chekInt = false;
-        startFlag = true;
-    }
-
 
     /**
      * print any objects in console
@@ -129,13 +137,23 @@ public class Logger {
      * @param message any value
      */
     public static void log(Object message) {
-        print(REFERENCE + AD);
+        print(REFERENCE + AD + message.toString());
     }
+
+    public static void log(int[] arr) {
+        printarr(arr);
+    }
+
+    public static void log(int[][] arr) {
+        printduoarr(arr);
+    }
+
 
     /**
      * print final integer sum of last string value
      */
     public static void close() {
+        startFlag = false;
         if (chekInt) {
             printSum(sum);
             return;
@@ -144,7 +162,7 @@ public class Logger {
     }
 
     private static void print(String s) {
-        System.out.println(s);
+        System.out.print(s + "\n");
     }
 
     private static void caseMax(int message) {
@@ -174,5 +192,28 @@ public class Logger {
         sum = 0;
     }
 
+    private static void printarr(int[] arr) {
+        System.out.print(PRIMITIVEAR + "{");
+        for (int i = 0; i < arr.length - 1; i++) {
+            System.out.print(arr[i] + ", ");
+        }
+        print(arr[arr.length - 1] + "}");
+    }
+
+    private static void printduoarr(int[][] arr) {
+        System.out.println(PRIMITIVEMATR + " {");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print("{");
+            for (int j = 0; j < arr[i].length - 1; j++) {
+                System.out.print(arr[i][j] + ", ");
+            }
+            print(arr[i][arr.length - 1] + "}");
+        }
+        System.out.println("}");
+    }
+
+    public static void closeAll() {
+        startFlag = false;
+    }
 
 }
