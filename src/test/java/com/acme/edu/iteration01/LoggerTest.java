@@ -87,7 +87,8 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     public void shouldLogString() throws IOException {
         //region when
         Logger.log("test string 1");
-        Logger.log("other str");
+        Logger.log("other str 0");
+        Logger.close();
         //endregion
 
         //region then

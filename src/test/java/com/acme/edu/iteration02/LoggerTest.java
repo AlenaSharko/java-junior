@@ -2,6 +2,7 @@ package com.acme.edu.iteration02;
 
 import com.acme.edu.Logger;
 import com.acme.edu.SysoutCaptureAndAssertionAbility;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,7 +16,10 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         captureSysout();
     }
     //endregion
-
+    @After
+    public void tearDown() {
+        resetOut();
+    }
 
 
     @Test
@@ -42,6 +46,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     @Test
     public void shouldLogCorrectlyIntegerOverflowWhenSequentIntegers() {
         //region when
+        resetOut();
         Logger.log("str 1");
         Logger.log(10);
         Logger.log(Integer.MAX_VALUE);
@@ -64,6 +69,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     @Test
     public void shouldLogCorrectlyByteOverflowWhenSequentBytes() {
         //region when
+        resetOut();
         Logger.log("str 1");
         Logger.log((byte)10);
         Logger.log(Byte.MAX_VALUE);
@@ -83,29 +89,30 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         //endregion
     }
 
-//    @Test
-//    public void shouldLogSameSubsequentStringsWithoutRepeat() throws IOException {
-//        //region when
-//        Logger.log("str 1");
-//        Logger.log("str 2");
-//        Logger.log("str 2");
-//        Logger.log(0);
-//        Logger.log("str 2");
-//        Logger.log("str 3");
-//        Logger.log("str 3");
-//        Logger.log("str 3");
-//        //endregion
-//
-//        //region then
-//        assertSysoutEquals(
-//            "str 1\n" +
-//            "str 2 (x2)\n" +
-//            "0\n" +
-//            "str 2\n" +
-//            "str 3 (x3)\n"
-//        );
-//        //endregion
-//    }
+    @Test
+    public void shouldLogSameSubsequentStringsWithoutRepeat() throws IOException {
+        //region when
+        Logger.log("str 1");
+        Logger.log("str 2");
+        Logger.log("str 2");
+        Logger.log(0);
+        Logger.log("str 2");
+        Logger.log("str 3");
+        Logger.log("str 3");
+        Logger.log("str 3");
+        Logger.close();
+        //endregion
+
+        //region then
+        assertSysoutEquals(
+            "string: str 1\n" +
+            "string: str 2 (x2)\n" +
+            "primitive: 0\n" +
+            "string: str 2\n" +
+            "string: str 3 (x3)\n"
+        );
+        //endregion
+    }
 
 
 }
