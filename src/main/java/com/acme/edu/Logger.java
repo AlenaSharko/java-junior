@@ -60,7 +60,7 @@ public class Logger {
             caseMax(message);
             return;
         }
-        if ((!chekInt) & startFlag) {
+        if (startFlag && (!chekInt)) {
             printStr(prevString);
         }
         sum += message;
@@ -74,10 +74,10 @@ public class Logger {
      * @param message String value
      */
     public static void log(String message) {
-        if (startFlag & chekInt) {
+        if (startFlag && chekInt) {
             printSum(sum);
         }
-        if ((!chekInt) & startFlag) {
+        if (startFlag && (!chekInt)) {
             if (findStringNum(message) == lastChar) {
                 countString++;
             } else {
@@ -101,7 +101,7 @@ public class Logger {
             caseMax(message);
             return;
         }
-        if ((!chekInt) & startFlag) {
+        if (startFlag && (!chekInt)) {
             printStr(prevString);
         }
         sum += message;
@@ -161,6 +161,14 @@ public class Logger {
         printStr(prevString);
     }
 
+    /**
+     * Dump static flag for another tests
+     * Very important
+     */
+    public static void closeAll() {
+        startFlag = false;
+    }
+
     private static void print(String s) {
         System.out.print(s + "\n");
     }
@@ -212,8 +220,5 @@ public class Logger {
         System.out.println("}");
     }
 
-    public static void closeAll() {
-        startFlag = false;
-    }
 
 }
