@@ -43,7 +43,6 @@ public class Logger {
     //end region
 
     private static int sum = 0;
-    private static int arrsum = 0;
     private static int countString = 1;
     private static int lastChar;
     private static boolean startFlag = false;
@@ -141,16 +140,6 @@ public class Logger {
         print(REFERENCE + AD + message.toString());
     }
 
-    /**
-     * Print integer array in the console
-     *
-     * @param arr array of ineger
-     */
-//    public static void log(int[] arr) {
-//        StringBuilder array = new StringBuilder("");
-//        array.append(makeOneString(arr));
-//        print(PRIMITIVEAR + array);
-//    }
 
     /**
      * Print matrix in the console
@@ -178,7 +167,11 @@ public class Logger {
         }
         print(PRIMITIVEAR + array);
     }
-
+    /**
+     * Print integer array in the console
+     *
+     * @param nums array of ineger
+     */
     public static void log(int... nums) {
         StringBuilder array = new StringBuilder("");
         array.append(makeOneString(nums));
@@ -247,7 +240,4 @@ public class Logger {
         return oneString.toString();
     }
 
-    private static void printArrSum(int arr) {
-
-    }
 }
