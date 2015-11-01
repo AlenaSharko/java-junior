@@ -60,7 +60,7 @@ public class Logger {
      * @param message integer number
      */
     public static void log(int message) {
-        if (message == Integer.MAX_VALUE | message == (Integer.MAX_VALUE - 10)) {
+        if (message == Integer.MAX_VALUE || message == (Integer.MAX_VALUE - 10)) {
             caseMax(message);
             return;
         }
