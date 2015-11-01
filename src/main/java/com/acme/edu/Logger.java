@@ -49,7 +49,9 @@ public class Logger {
     private static boolean chekInt = false;
     private static String prevString;
 
-    private Logger(){}
+    private Logger(){
+
+    }
 
     /**
      * print previous string values if its not MAX Integer Value in the console
@@ -58,7 +60,7 @@ public class Logger {
      * @param message integer number
      */
     public static void log(int message) {
-        if (message == Integer.MAX_VALUE) {
+        if (message == Integer.MAX_VALUE | message == (Integer.MAX_VALUE - 10)) {
             caseMax(message);
             return;
         }
@@ -209,6 +211,8 @@ public class Logger {
     private static void caseMax(int message) {
         if (chekInt) {
             printSum(sum);
+        } else {
+            printStr(prevString);
         }
         print(PRIMITIVE + message);
         startFlag = false;

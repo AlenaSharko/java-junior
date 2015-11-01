@@ -26,11 +26,12 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     public void shouldLogIntegersArray() throws IOException {
         //region when
         Logger.log(new int[] {-1, 0, 1});
+        Logger.closeAll();
         //endregion
 
         //region then
         assertSysoutEquals(
-            "primitives array: {-1, 0, 1}\n"
+                "primitives array: {-1, 0, 1}\n"
         );
         //endregion
     }
@@ -39,15 +40,16 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     public void shouldLogIntegersMatrix() throws IOException {
         //region when
         Logger.log(new int[][] {{-1, 0, 1}, {1, 2, 3}, {-1, -2, -3}});
+        Logger.closeAll();
         //endregion
 
         //region then
         assertSysoutEquals(
-            "primitives matrix: {\n" +
-                "{-1, 0, 1}\n" +
-                "{1, 2, 3}\n" +
-                "{-1, -2, -3}\n" +
-            "}\n"
+                "primitives matrix: {\n" +
+                        "{-1, 0, 1}\n" +
+                        "{1, 2, 3}\n" +
+                        "{-1, -2, -3}\n" +
+                        "}\n"
         );
         //endregion
     }
@@ -85,6 +87,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     public void shouldLogIntegersWithOneMethodCall() throws IOException {
         //region when
         Logger.log(-1, 0, 1, 3);
+        Logger.closeAll();
         //endregion
 
         //region then
@@ -92,22 +95,23 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         //endregion
     }
 
-//    @Test
-//    public void shouldCorrectDealWithIntegerOverflowWhenOneMethodCall() throws IOException {
-//        //region when
-//        Logger.log(1);
-//        Logger.log("str");
-//        Logger.log(Integer.MAX_VALUE - 10);
-//        Logger.log(11);
-//        //endregion
-//
-//        //region then
-//        assertSysoutContains(1);
-//        assertSysoutContains("str");
-//        assertSysoutContains(Integer.MAX_VALUE - 10);
-//        assertSysoutContains(11);
-//        //endregion
-//    }
+    @Test
+    public void shouldCorrectDealWithIntegerOverflowWhenOneMethodCall() throws IOException {
+        //region when
+        Logger.log(1);
+        Logger.log("str 0");
+        Logger.log(Integer.MAX_VALUE - 10);
+        Logger.log(11);
+        Logger.close();
+        //endregion
+
+        //region then
+        assertSysoutContains(1 + "");
+        assertSysoutContains("str 0");
+        assertSysoutContains((Integer.MAX_VALUE - 10) + "");
+        assertSysoutContains(11 + "");
+        //endregion
+    }
 
 
 }
