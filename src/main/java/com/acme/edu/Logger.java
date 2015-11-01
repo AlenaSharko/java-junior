@@ -1,7 +1,7 @@
 package com.acme.edu;
 
 /**
- * print different values in console
+ * log different values in console
  *
  * @author Alena Sharko
  */
@@ -27,7 +27,7 @@ public class Logger {
     /**
      * Decoration - @
      */
-    public static final String AD = "@";
+    public static final String AT = "@";
     /**
      * Decoration - X
      */
@@ -35,33 +35,36 @@ public class Logger {
     /**
      * Decoraton for arrays
      */
-    public static final String PRIMITIVEAR = "primitives array: ";
+    public static final String PRIMITIVE_ARRAY = "primitives array: ";
     /**
      * Decoration for matrix
      */
-    public static final String PRIMITIVEMATR = "primitives matrix:";
+    public static final String PRIMITIVES_MATRIX = "primitives matrix:";
+    /**
+     * Decoration for multimatrix
+     */
+    public static final String PRIMITIVES_MULTI_MATRIX = "primitives multimatrix: ";
+
     //end region
 
     private static int sum = 0;
     private static int countString = 1;
     private static int lastChar;
-    private static boolean startFlag = false;
-    private static boolean chekInt = false;
+    private static boolean startFlag;
+    private static boolean chekInt;
     private static String prevString;
 
-    private Logger(){
+    Logger() {
 
     }
 
     /**
-     * print previous string values if its not MAX Integer Value in the console
+     * log integer values in the console
      * with decoration - "primitive: "
-     *
-     * @param message integer number
      */
     public static void log(int message) {
         if (message == Integer.MAX_VALUE || message == (Integer.MAX_VALUE - 10)) {
-            caseMax(message);
+            reactToMaxValue(message);
             return;
         }
         if (startFlag && (!chekInt)) {
@@ -73,9 +76,8 @@ public class Logger {
     }
 
     /**
-     * print previous integer or byte values in console
-     *
-     * @param message String value
+     * log string values in the console
+     * with decoration "string: "
      */
     public static void log(String message) {
         if (startFlag && chekInt) {
@@ -95,14 +97,12 @@ public class Logger {
     }
 
     /**
-     * print previous string values if its not MAX Byte Value in the console
+     * log byte values in the console
      * with decoration - "primitive: "
-     *
-     * @param message integer number
      */
     public static void log(byte message) {
         if (message == Byte.MAX_VALUE) {
-            caseMax(message);
+            reactToMaxValue(message);
             return;
         }
         if (startFlag && (!chekInt)) {
@@ -115,10 +115,8 @@ public class Logger {
 
 
     /**
-     * print charecter numbers in the console
+     * log charecter numbers in the console
      * with decoration - "char: "
-     *
-     * @param message char value
      */
     public static void log(char message) {
         print(CHAR + message);
@@ -127,8 +125,6 @@ public class Logger {
     /**
      * print boolean value in the console
      * with decoration - "primitive: "
-     *
-     * @param message boolean value
      */
     public static void log(boolean message) {
         print(PRIMITIVE + message);
@@ -136,19 +132,17 @@ public class Logger {
 
 
     /**
-     * print any objects in console
-     *
-     * @param message any value
+     * log any objects in console
+     * with decoration "reference: " and "@"
      */
     public static void log(Object message) {
-        print(REFERENCE + AD + message.toString());
+        print(REFERENCE + AT + message.toString());
     }
 
 
     /**
-     * Print matrix in the console
-     *
-     * @param matrix integer matrix
+     * log matrix size 2x2 in the console
+     * with decoration "primitives matrix:"
      */
     public static void log(int[][] matrix) {
         StringBuilder array = new StringBuilder(" {\n");
@@ -156,35 +150,59 @@ public class Logger {
             array.append(makeOneString(xi)).append("\n");
         }
         array.append("}");
-        print(PRIMITIVEMATR + array);
+        print(PRIMITIVES_MATRIX + array);
     }
 
     /**
-     * Print any string values in the console
-     *
-     * @param strings string array
+     * log any string values in the console
+     * with decoration "primitives array: "
      */
     public static void log(String... strings) {
         StringBuilder array = new StringBuilder();
         for (String string : strings) {
             array.append(string).append("\n");
         }
-        print(PRIMITIVEAR + array);
+        print(PRIMITIVE_ARRAY + array);
     }
+
     /**
-     * Print integer array in the console
-     *
-     * @param nums array of ineger
+     * log integer array in the console
+     * with decoration "primitives array: "
      */
     public static void log(int... nums) {
         StringBuilder array = new StringBuilder("");
         array.append(makeOneString(nums));
-        print(PRIMITIVEAR + array);
+        print(PRIMITIVE_ARRAY + array);
+    }
+
+    /**
+     * log multimatrix - array of cubes in the console
+     * with decoration "primitives multimatrix: "
+     */
+    public static void log(int[][][][] array) {
+        StringBuilder multiMatr = new StringBuilder("{\n");
+        for (int[][][] cube : array) {
+            multiMatr.append("{\n");
+            for (int[][] rect : cube) {
+                multiMatr.append("{\n");
+                for (int[] line : rect) {
+                    multiMatr.append("{\n");
+                    for (int xi : line) {
+                        multiMatr.append(xi).append("\n");
+                    }
+                    multiMatr.append("}\n");
+                }
+                multiMatr.append("}\n");
+            }
+            multiMatr.append("}\n");
+        }
+        multiMatr.append("}");
+        print(PRIMITIVES_MULTI_MATRIX + multiMatr);
     }
 
 
     /**
-     * print final integer sum of last string value
+     * log final integer sum of last string value in the console
      */
     public static void close() {
         startFlag = false;
@@ -208,7 +226,7 @@ public class Logger {
         System.out.println(s);
     }
 
-    private static void caseMax(int message) {
+    private static void reactToMaxValue(int message) {
         if (chekInt) {
             printSum(sum);
         } else {
