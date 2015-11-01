@@ -43,6 +43,7 @@ public class Logger {
     //end region
 
     private static int sum = 0;
+    private static int arrsum = 0;
     private static int countString = 1;
     private static int lastChar;
     private static boolean startFlag = false;
@@ -145,25 +146,11 @@ public class Logger {
      *
      * @param arr array of ineger
      */
-    public static void log(int[] arr) {
-        StringBuilder array = new StringBuilder("");
-        array.append(makeOneString(arr));
-        print(PRIMITIVEAR + array);
-    }
-
-    /**
-     * Print any string values in the console
-     *
-     * @param strings string array
-     */
-    public static void log(String... strings) {
-        StringBuilder array = new StringBuilder();
-        for (String string : strings) {
-            array.append(string).append("\n");
-        }
-        print(PRIMITIVEAR + array);
-    }
-
+//    public static void log(int[] arr) {
+//        StringBuilder array = new StringBuilder("");
+//        array.append(makeOneString(arr));
+//        print(PRIMITIVEAR + array);
+//    }
 
     /**
      * Print matrix in the console
@@ -180,6 +167,26 @@ public class Logger {
     }
 
     /**
+     * Print any string values in the console
+     *
+     * @param strings string array
+     */
+    public static void log(String... strings) {
+        StringBuilder array = new StringBuilder();
+        for (String string : strings) {
+            array.append(string).append("\n");
+        }
+        print(PRIMITIVEAR + array);
+    }
+
+    public static void log(int... nums) {
+        StringBuilder array = new StringBuilder("");
+        array.append(makeOneString(nums));
+        print(PRIMITIVEAR + array);
+    }
+
+
+    /**
      * print final integer sum of last string value
      */
     public static void close() {
@@ -189,6 +196,7 @@ public class Logger {
             return;
         }
         printStr(prevString);
+
     }
 
     /**
@@ -200,7 +208,7 @@ public class Logger {
     }
 
     private static void print(String s) {
-        System.out.print(s + "\n");
+        System.out.println(s);
     }
 
     private static void caseMax(int message) {
@@ -239,5 +247,7 @@ public class Logger {
         return oneString.toString();
     }
 
+    private static void printArrSum(int arr) {
 
+    }
 }
