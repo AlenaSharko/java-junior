@@ -49,6 +49,8 @@ public class Logger {
     private static boolean chekInt = false;
     private static String prevString;
 
+    private Logger(){}
+
     /**
      * print previous string values if its not MAX Integer Value in the console
      * with decoration - "primitive: "
