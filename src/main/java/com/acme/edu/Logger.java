@@ -252,10 +252,6 @@ public class Logger {
 
     private static void print(String message, PrintStates state) {
         switch (state) {
-            case SIMPLE_PRINT: {
-                System.out.println(message);
-                break;
-            }
             case PRINT_STRING: {
                 if (countString == 1) {
                     print(STR + message,PrintStates.SIMPLE_PRINT);
@@ -270,10 +266,12 @@ public class Logger {
                 sum = 0;
                 break;
             }
+            default:{
+                System.out.println(message);
+                break;
+            }
         }
     }
-
-
 }
 
 
