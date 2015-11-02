@@ -58,6 +58,10 @@ public class Logger {
 
     }
 
+    enum PrintStates {
+        SIMPLE_PRINT, PRINT_SUM, PRINT_STRING
+    }
+
     /**
      * log integer values in the console
      * with decoration - "primitive: "
@@ -68,7 +72,7 @@ public class Logger {
             return;
         }
         if (startFlag && (!chekInt)) {
-            printStr(prevString);
+            print(prevString, PrintStates.PRINT_STRING);
         }
         sum += message;
         chekInt = true;
@@ -81,13 +85,13 @@ public class Logger {
      */
     public static void log(String message) {
         if (startFlag && chekInt) {
-            printSum(sum);
+            print(sum + "", PrintStates.PRINT_SUM);
         }
         if (startFlag && (!chekInt)) {
             if (findStringNum(message) == lastChar) {
                 countString++;
             } else {
-                printStr(prevString);
+                print(prevString, PrintStates.PRINT_STRING);
             }
         }
         lastChar = findStringNum(message);
@@ -106,7 +110,7 @@ public class Logger {
             return;
         }
         if (startFlag && (!chekInt)) {
-            printStr(prevString);
+            print(prevString, PrintStates.PRINT_STRING);
         }
         sum += message;
         chekInt = true;
@@ -119,7 +123,7 @@ public class Logger {
      * with decoration - "char: "
      */
     public static void log(char message) {
-        print(CHAR + message);
+        print(CHAR + message, PrintStates.SIMPLE_PRINT);
     }
 
     /**
@@ -127,7 +131,7 @@ public class Logger {
      * with decoration - "primitive: "
      */
     public static void log(boolean message) {
-        print(PRIMITIVE + message);
+        print(PRIMITIVE + message, PrintStates.SIMPLE_PRINT);
     }
 
 
@@ -136,7 +140,7 @@ public class Logger {
      * with decoration "reference: " and "@"
      */
     public static void log(Object message) {
-        print(REFERENCE + AT + message.toString());
+        print(REFERENCE + AT + message.toString(), PrintStates.SIMPLE_PRINT);
     }
 
 
@@ -150,7 +154,7 @@ public class Logger {
             array.append(makeOneString(xi)).append("\n");
         }
         array.append("}");
-        print(PRIMITIVES_MATRIX + array);
+        print(PRIMITIVES_MATRIX + array, PrintStates.SIMPLE_PRINT);
     }
 
     /**
@@ -162,7 +166,7 @@ public class Logger {
         for (String string : strings) {
             array.append(string).append("\n");
         }
-        print(PRIMITIVE_ARRAY + array);
+        print(PRIMITIVE_ARRAY + array, PrintStates.SIMPLE_PRINT);
     }
 
     /**
@@ -172,7 +176,7 @@ public class Logger {
     public static void log(int... nums) {
         StringBuilder array = new StringBuilder("");
         array.append(makeOneString(nums));
-        print(PRIMITIVE_ARRAY + array);
+        print(PRIMITIVE_ARRAY + array, PrintStates.SIMPLE_PRINT);
     }
 
     /**
@@ -197,7 +201,7 @@ public class Logger {
             multiMatr.append("}\n");
         }
         multiMatr.append("}");
-        print(PRIMITIVES_MULTI_MATRIX + multiMatr);
+        print(PRIMITIVES_MULTI_MATRIX + multiMatr, PrintStates.SIMPLE_PRINT);
     }
 
 
@@ -207,11 +211,10 @@ public class Logger {
     public static void close() {
         startFlag = false;
         if (chekInt) {
-            printSum(sum);
+            print(sum + "", PrintStates.PRINT_SUM);
             return;
         }
-        printStr(prevString);
-
+        print(prevString, PrintStates.PRINT_STRING);
     }
 
     /**
@@ -222,37 +225,19 @@ public class Logger {
         startFlag = false;
     }
 
-    private static void print(String s) {
-        System.out.println(s);
-    }
-
     private static void reactToMaxValue(int message) {
         if (chekInt) {
-            printSum(sum);
+            print(sum + "", PrintStates.PRINT_SUM);
         } else {
-            printStr(prevString);
+            print(prevString, PrintStates.PRINT_STRING);
         }
-        print(PRIMITIVE + message);
+        print(PRIMITIVE + message, PrintStates.SIMPLE_PRINT);
         startFlag = false;
-    }
-
-    private static void printStr(String message) {
-        if (countString == 1) {
-            print(STR + message);
-        } else {
-            print(STR + message + " " + X + countString + ")");
-        }
-        countString = 1;
     }
 
     private static int findStringNum(String message) {
         String[] arr = message.split(" ");
         return Integer.parseInt(arr[arr.length - 1]);
-    }
-
-    private static void printSum(int summa) {
-        print(PRIMITIVE + summa);
-        sum = 0;
     }
 
     private static String makeOneString(int[] arr) {
@@ -264,4 +249,31 @@ public class Logger {
         return oneString.toString();
     }
 
+
+    private static void print(String message, PrintStates state) {
+        switch (state) {
+            case SIMPLE_PRINT: {
+                System.out.println(message);
+                break;
+            }
+            case PRINT_STRING: {
+                if (countString == 1) {
+                    print(STR + message,PrintStates.SIMPLE_PRINT);
+                } else {
+                    print(STR + message + " " + X + countString + ")",PrintStates.SIMPLE_PRINT);
+                }
+                countString = 1;
+                break;
+            }
+            case PRINT_SUM: {
+                print(PRIMITIVE + message,PrintStates.SIMPLE_PRINT);
+                sum = 0;
+                break;
+            }
+        }
+    }
+
+
 }
+
+
