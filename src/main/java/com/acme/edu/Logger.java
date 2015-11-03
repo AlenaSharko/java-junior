@@ -5,7 +5,6 @@ package com.acme.edu;
  *
  * @author Alena Sharko
  */
-
 public class Logger {
 
     //region Decoration constasts
@@ -48,6 +47,9 @@ public class Logger {
 
     //endregion
 
+    /**
+     * Constructor
+     */
     public Logger() {
 
     }
@@ -179,13 +181,3 @@ public class Logger {
 
 }
 
-class Main {
-    public static void main(String[] args) {
-        Logger logger = new Logger();
-        logger.log(1);
-        logger.log("str 0");
-        logger.log(Integer.MAX_VALUE - 10);
-        logger.log(11);
-        logger.close();
-    }
-}

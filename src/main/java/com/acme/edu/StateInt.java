@@ -9,10 +9,13 @@ public class StateInt extends State {
 
     private static long intBuf = 0;
     private static boolean bufFlag;
-    //private static int predBuf = 0;
-    //private static boolean predBufFlush;
 
 
+    /**
+     * change state
+     *
+     * @return StateString
+     */
     @Override
     public State swichStateToIntState() {
         if (bufFlag) {
@@ -21,11 +24,20 @@ public class StateInt extends State {
         return new StateString();
     }
 
+    /**
+     * change state
+     *
+     * @return StateInt
+     */
     @Override
     public State swichStateToStringState() {
         return new StateInt();
     }
 
+    /**
+     *
+     * @param mes this paramert will be loged
+     */
     @Override
     public void log(String mes) {
         int message = Integer.parseInt(mes);
@@ -33,7 +45,7 @@ public class StateInt extends State {
             reactToMaxValue(message);
             return;
         }
-        //predBuf = intBuf;
+
         intBuf += message;
 
         if(intBuf > Integer.MAX_VALUE) {
@@ -46,9 +58,11 @@ public class StateInt extends State {
         bufFlag = true;
     }
 
+    /**
+     * rop prepared stirng to print
+     */
     @Override
     public void flush() {
-
         print(Logger.PRIMITIVE + intBuf);
         intBuf = 0;
         bufFlag = false;
