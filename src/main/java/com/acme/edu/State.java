@@ -11,7 +11,7 @@ public abstract class State {
      *
      * @param mes this paramert will be loged
      */
-    abstract public void log(String mes);
+    abstract void log(String mes);
 
     /**
      * drop prepared stirng to print
@@ -23,14 +23,14 @@ public abstract class State {
      *
      * @return StateString if before was StateInt
      */
-    abstract public State swichStateToIntState();
+    abstract State swichStateToIntState();
 
     /**
      * changestate
      *
      * @return StateInt if before was StateString
      */
-    abstract public State swichStateToStringState();
+    abstract State swichStateToStringState();
 
     void print(String message) {
         Printer printer = new ConsolPrinter();

@@ -26,10 +26,6 @@ public class StateDefault extends State {
         return new StateInt();
     }
 
-    public StateDefault(){
-
-    }
-
     /**
      *
      * @param mes this paramert will be loged
