@@ -7,5 +7,8 @@ package com.acme.edu;
  * @author Alena Sharko
  */
 public interface Printer {
+    /**
+     * print string messages
+     */
     void print(String message);
 }
