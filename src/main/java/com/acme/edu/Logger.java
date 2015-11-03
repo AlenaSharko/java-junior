@@ -101,66 +101,66 @@ public class Logger {
     public void log(Object message) {
         state.log(REFERENCE + AT + message.toString());
     }
-//
-//    /**
-//     * log matrix size 2x2 in the console
-//     * with decoration "primitives matrix:"
-//     */
-//    public static void log(int[][] matrix) {
-//        StringBuilder array = new StringBuilder(" {\n");
-//        for (int[] xi : matrix) {
-//            array.append(makeOneString(xi)).append("\n");
-//        }
-//        array.append("}");
-//        print(PRIMITIVES_MATRIX + array, PrintStates.SIMPLE_PRINT);
-//    }
-//
-//    /**
-//     * log any string values in the console
-//     * with decoration "primitives array: "
-//     */
-//    public static void log(String... strings) {
-//        StringBuilder array = new StringBuilder();
-//        for (String string : strings) {
-//            array.append(string).append("\n");
-//        }
-//        print(PRIMITIVE_ARRAY + array, PrintStates.SIMPLE_PRINT);
-//    }
-//
-//    /**
-//     * log integer array in the console
-//     * with decoration "primitives array: "
-//     */
-//    public static void log(int... nums) {
-//        StringBuilder array = new StringBuilder("");
-//        array.append(makeOneString(nums));
-//        print(PRIMITIVE_ARRAY + array, PrintStates.SIMPLE_PRINT);
-//    }
-//
-//    /**
-//     * log multimatrix - array of cubes in the console
-//     * with decoration "primitives multimatrix: "
-//     */
-//    public static void log(int[][][][] array) {
-//        StringBuilder multiMatr = new StringBuilder("{\n");
-//        for (int[][][] cube : array) {
-//            multiMatr.append("{\n");
-//            for (int[][] rect : cube) {
-//                multiMatr.append("{\n");
-//                for (int[] line : rect) {
-//                    multiMatr.append("{\n");
-//                    for (int xi : line) {
-//                        multiMatr.append(xi).append("\n");
-//                    }
-//                    multiMatr.append("}\n");
-//                }
-//                multiMatr.append("}\n");
-//            }
-//            multiMatr.append("}\n");
-//        }
-//        multiMatr.append("}");
-//        print(PRIMITIVES_MULTI_MATRIX + multiMatr, PrintStates.SIMPLE_PRINT);
-//    }
+
+    /**
+     * log matrix size 2x2 in the console
+     * with decoration "primitives matrix:"
+     */
+    public void log(int[][] matrix) {
+        StringBuilder array = new StringBuilder(" {\n");
+        for (int[] xi : matrix) {
+            array.append(makeOneString(xi)).append("\n");
+        }
+        array.append("}");
+        state.log(PRIMITIVES_MATRIX + array);
+    }
+
+    /**
+     * log any string values in the console
+     * with decoration "primitives array: "
+     */
+    public void log(String... strings) {
+        StringBuilder array = new StringBuilder();
+        for (String string : strings) {
+            array.append(string).append("\n");
+        }
+        state.log(PRIMITIVE_ARRAY + array);
+    }
+
+    /**
+     * log integer array in the console
+     * with decoration "primitives array: "
+     */
+    public void log(int... nums) {
+        StringBuilder array = new StringBuilder("");
+        array.append(makeOneString(nums));
+        state.log(PRIMITIVE_ARRAY + array);
+    }
+
+    /**
+     * log multimatrix - array of cubes in the console
+     * with decoration "primitives multimatrix: "
+     */
+    public void log(int[][][][] array) {
+        StringBuilder multiMatr = new StringBuilder("{\n");
+        for (int[][][] cube : array) {
+            multiMatr.append("{\n");
+            for (int[][] rect : cube) {
+                multiMatr.append("{\n");
+                for (int[] line : rect) {
+                    multiMatr.append("{\n");
+                    for (int xi : line) {
+                        multiMatr.append(xi).append("\n");
+                    }
+                    multiMatr.append("}\n");
+                }
+                multiMatr.append("}\n");
+            }
+            multiMatr.append("}\n");
+        }
+        multiMatr.append("}");
+        state.log(PRIMITIVES_MULTI_MATRIX + multiMatr);
+    }
 
     /**
      * log integer sum of last string value
@@ -169,14 +169,14 @@ public class Logger {
         state.flush();
     }
 
-//    private static String makeOneString(int[] arr) {
-//        StringBuilder oneString = new StringBuilder("{");
-//        for (int i = 0; i < arr.length - 1; i++) {
-//            oneString.append(arr[i]).append(", ");
-//        }
-//        oneString.append(arr[arr.length - 1]).append("}");
-//        return oneString.toString();
-//    }
+    private static String makeOneString(int[] arr) {
+        StringBuilder oneString = new StringBuilder("{");
+        for (int i = 0; i < arr.length - 1; i++) {
+            oneString.append(arr[i]).append(", ");
+        }
+        oneString.append(arr[arr.length - 1]).append("}");
+        return oneString.toString();
+    }
 
 
 }

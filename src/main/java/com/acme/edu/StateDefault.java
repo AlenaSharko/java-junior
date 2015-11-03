@@ -26,7 +26,7 @@ public class StateDefault extends State {
         return new StateInt();
     }
 
-    StateDefault(){
+    public StateDefault(){
 
     }
 
