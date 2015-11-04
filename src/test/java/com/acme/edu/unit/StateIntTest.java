@@ -93,11 +93,11 @@ public class StateIntTest {
     public void shouldCallPrinterForPrintCurrentValueWhenIntegerOverFlow() {
         state.log("5");
         state.log("3");
-        state.log("" + (Integer.MIN_VALUE - 2));
+        state.log("" + (Integer.MAX_VALUE - 2));
         state.flush();
 
         verify(printer).print("primitive: 8");
-        verify(printer).print("primitive: " + (Integer.MIN_VALUE - 2));
+        verify(printer).print("primitive: " + (Integer.MAX_VALUE - 2));
     }
 
 
