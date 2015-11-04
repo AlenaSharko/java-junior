@@ -9,7 +9,6 @@ public class StateDefault extends State {
 
     private Printer printer;
 
-
     /**
      * constructor
      */

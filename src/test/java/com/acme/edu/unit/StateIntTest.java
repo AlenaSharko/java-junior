@@ -12,7 +12,6 @@ import static org.mockito.Mockito.*;
  * Testing state int values
  */
 public class StateIntTest {
-    //private static final String SEP = System.lineSeparator();
     StateInt state;
     Printer printer;
 
