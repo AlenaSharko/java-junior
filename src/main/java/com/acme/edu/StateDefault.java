@@ -9,6 +9,10 @@ public class StateDefault extends State {
 
     private Printer printer;
 
+
+    /**
+     * constructor
+     */
     public StateDefault(Printer printer) {
         this.printer = printer;
     }

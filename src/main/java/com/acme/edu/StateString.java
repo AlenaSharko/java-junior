@@ -15,7 +15,9 @@ public class StateString extends State {
 
     private Printer printer;
 
-
+    /**
+     * constructor
+     */
     public StateString(Printer printer) {
         this.printer = printer;
     }

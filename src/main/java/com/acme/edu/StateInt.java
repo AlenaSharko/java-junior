@@ -11,6 +11,9 @@ public class StateInt extends State {
     private boolean bufFlag;
     private Printer printer;
 
+    /**
+     * constructor
+     */
     public StateInt(Printer printer) {
         this.printer = printer;
     }
