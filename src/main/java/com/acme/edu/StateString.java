@@ -8,11 +8,17 @@ package com.acme.edu;
 public class StateString extends State {
 
 
-    private static String stringBuf;
-    private static boolean bufflag;
-    private static int countString = 1;
-    private static int lastChar;
+    private String stringBuf;
+    private boolean bufflag;
+    private int countString = 1;
+    private int lastSiringNum;
 
+    private Printer printer;
+
+
+    public StateString(Printer printer) {
+        this.printer = printer;
+    }
     /**
      * change state
      *
@@ -20,7 +26,7 @@ public class StateString extends State {
      */
     @Override
     public State swichStateToIntState() {
-        return new StateString();
+        return this;
     }
 
     /**
@@ -33,7 +39,7 @@ public class StateString extends State {
         if (bufflag) {
             flush();
         }
-        return new StateInt();
+        return new StateInt(printer);
     }
 
     /**
@@ -43,14 +49,14 @@ public class StateString extends State {
     @Override
     public void log(String mes) {
         if (bufflag) {
-            if (findStringNum(mes) == lastChar) {
+            if (findStringNum(mes) == lastSiringNum) {
                 countString++;
             } else {
                 flush();
             }
         }
 
-        lastChar = findStringNum(mes);
+        lastSiringNum = findStringNum(mes);
         stringBuf = mes;
         bufflag = true;
 
@@ -63,9 +69,9 @@ public class StateString extends State {
     public void flush() {
 
         if (countString == 1) {
-            print(Logger.STR + stringBuf);
+            printer.print(Logger.STR + stringBuf);
         } else {
-            print(Logger.STR + stringBuf + " " + Logger.X + countString + ")");
+            printer.print(Logger.STR + stringBuf + " " + Logger.X + countString + ")");
         }
         countString = 1;
         bufflag = false;

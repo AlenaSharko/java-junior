@@ -32,8 +32,4 @@ public abstract class State {
      */
     abstract State swichStateToStringState();
 
-    void print(String message) {
-        Printer printer = new ConsolPrinter();
-        printer.print(message);
-    }
 }

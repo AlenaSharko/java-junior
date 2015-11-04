@@ -47,14 +47,9 @@ public class Logger {
 
     //endregion
 
-    /**
-     * Constructor
-     */
-    public Logger() {
+    private Printer printer = new ConsolPrinter();
 
-    }
-
-    State state = new StateDefault();
+    State state = new StateDefault(printer);
 
     /**
      * log integer values
@@ -181,3 +176,17 @@ public class Logger {
 
 }
 
+class main{
+    public static void main(String[] args) {
+        Printer printer = new ConsolPrinter();
+        State state = new StateInt(printer);
+        //state = state.swichStateToStringState();
+
+        state.log("3");
+        state.log("6");
+        state.log(Integer.MAX_VALUE + "");
+        state.log("5");
+        state.log("5");
+        state.flush();
+    }
+}

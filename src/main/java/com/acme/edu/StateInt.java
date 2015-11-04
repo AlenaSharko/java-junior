@@ -7,8 +7,13 @@ package com.acme.edu;
  */
 public class StateInt extends State {
 
-    private static long intBuf = 0;
-    private static boolean bufFlag;
+    private long intBuf = 0;
+    private boolean bufFlag;
+    private Printer printer;
+
+    public StateInt(Printer printer) {
+        this.printer = printer;
+    }
 
 
     /**
@@ -21,7 +26,7 @@ public class StateInt extends State {
         if (bufFlag) {
             flush();
         }
-        return new StateString();
+        return new StateString(printer);
     }
 
     /**
@@ -31,24 +36,25 @@ public class StateInt extends State {
      */
     @Override
     public State swichStateToStringState() {
-        return new StateInt();
+        return this;
     }
 
     /**
-     *
      * @param mes this paramert will be loged
      */
     @Override
     public void log(String mes) {
         int message = Integer.parseInt(mes);
-        if (message == Integer.MAX_VALUE) {
-            reactToMaxValue(message);
+        if (message == Integer.MAX_VALUE || message == Integer.MIN_VALUE) {
+            flush();
+            intBuf = message;
+            bufFlag = true;
             return;
         }
 
         intBuf += message;
 
-        if(intBuf > Integer.MAX_VALUE) {
+        if (intBuf > Integer.MAX_VALUE) {
             intBuf -= message;
             flush();
             intBuf = message;
@@ -63,15 +69,11 @@ public class StateInt extends State {
      */
     @Override
     public void flush() {
-        print(Logger.PRIMITIVE + intBuf);
+        printer.print(Logger.PRIMITIVE + intBuf);
         intBuf = 0;
         bufFlag = false;
     }
 
-    private void reactToMaxValue(int message) {
-        flush();
-        print(Logger.PRIMITIVE + message);
-    }
 
 
 }

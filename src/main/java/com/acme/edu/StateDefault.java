@@ -6,6 +6,12 @@ package com.acme.edu;
  * @author Alena Sharko
  */
 public class StateDefault extends State {
+
+    private Printer printer;
+
+    public StateDefault(Printer printer) {
+        this.printer = printer;
+    }
     /**
      * change state
      *
@@ -13,7 +19,7 @@ public class StateDefault extends State {
      */
     @Override
     public State swichStateToIntState() {
-        return new StateString();
+        return new StateString(printer);
     }
 
     /**
@@ -23,7 +29,7 @@ public class StateDefault extends State {
      */
     @Override
     public State swichStateToStringState() {
-        return new StateInt();
+        return new StateInt(printer);
     }
 
     /**
@@ -32,7 +38,7 @@ public class StateDefault extends State {
      */
     @Override
     public void log(String mes) {
-        print(mes);
+        printer.print(mes);
     }
 
     /**
