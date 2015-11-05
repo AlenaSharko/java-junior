@@ -34,7 +34,7 @@ public class StateDefaultTest {
         state.log("primitive: " + dummy);
 
         verify(printer, times(1)).print("char: " + 'a');
-        verify(printer, times(1)).print("reference: " + "@" + object.toString());
+        verify(printer, times(1)).print("reference: " + "@" + object);
         verify(printer, times(1)).print("primitive: " + true);
 
     }

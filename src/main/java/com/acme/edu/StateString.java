@@ -11,7 +11,7 @@ public class StateString extends State {
     private String stringBuf;
     private boolean bufflag;
     private int countString = 1;
-    private int lastSiringNum;
+    private String lastSiring;
 
     private Printer printer;
 
@@ -21,28 +21,6 @@ public class StateString extends State {
     public StateString(Printer printer) {
         this.printer = printer;
     }
-    /**
-     * change state
-     *
-     * @return StateString if before was StateInt
-     */
-    @Override
-    public State swichStateToIntState() {
-        return this;
-    }
-
-    /**
-     * change state
-     *
-     * @return StateInt if before was StateString
-     */
-    @Override
-    public State swichStateToStringState() {
-        if (bufflag) {
-            flush();
-        }
-        return new StateInt(printer);
-    }
 
     /**
      *
@@ -51,14 +29,14 @@ public class StateString extends State {
     @Override
     public void log(String mes) {
         if (bufflag) {
-            if (findStringNum(mes) == lastSiringNum) {
+            if (mes.equals(lastSiring)) {
                 countString++;
             } else {
                 flush();
             }
         }
 
-        lastSiringNum = findStringNum(mes);
+        lastSiring = mes;
         stringBuf = mes;
         bufflag = true;
 

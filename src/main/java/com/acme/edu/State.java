@@ -18,18 +18,14 @@ public abstract class State {
      */
     public abstract void flush();
 
-    /**
-     * change state
-     *
-     * @return StateString if before was StateInt
-     */
-    abstract State swichStateToIntState();
 
-    /**
-     * changestate
-     *
-     * @return StateInt if before was StateString
-     */
-    abstract State swichStateToStringState();
 
+    public State swichToNewState(State state) {
+        if(this == state) {
+            return this;
+        } else {
+            this.flush();
+            return state;
+        }
+    }
 }

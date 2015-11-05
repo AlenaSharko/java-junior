@@ -47,23 +47,30 @@ public class Logger {
 
     //endregion
 
+
+
     private State state;
+    private Printer printer = new ConsolPrinter();
 
     /**
      * Constructor
      */
     public Logger(State state) {
         this.state = state;
-
     }
 
+    // region Constants state
+    public final State INT_STATE = new StateInt(printer);
+    public final State STRING_STATE = new StateString(printer);
+    public final State UNBUFFERED_STATE = new StateUnBuffered(printer);
+    //endregion
 
     /**
      * log integer values
      * with decoration - "primitive: "
      */
     public void log(int message) {
-        state = state.swichStateToStringState();
+        state = state.swichToNewState(INT_STATE);
         state.log(message + "");
     }
 
@@ -72,19 +79,17 @@ public class Logger {
      * with decoration "string: "
      */
     public void log(String message) {
-        state = state.swichStateToIntState();
+        state = state.swichToNewState(STRING_STATE);
         state.log(message);
     }
-
-
 
     /**
      * log charecter numbers
      * with decoration - "char: "
      */
     public void log(char message) {
+        state = state.swichToNewState(UNBUFFERED_STATE);
         state.log(CHAR + message);
-
     }
 
     /**
@@ -92,6 +97,7 @@ public class Logger {
      * with decoration - "primitive: "
      */
     public void log(boolean message) {
+        state = state.swichToNewState(UNBUFFERED_STATE);
         state.log(PRIMITIVE + message);
     }
 
@@ -101,6 +107,7 @@ public class Logger {
      * with decoration "reference: " and "@"
      */
     public void log(Object message) {
+        state = state.swichToNewState(UNBUFFERED_STATE);
         state.log(REFERENCE + AT + message.toString());
     }
 
@@ -114,6 +121,7 @@ public class Logger {
             array.append(makeOneString(xi)).append("\n");
         }
         array.append("}");
+        state = state.swichToNewState(UNBUFFERED_STATE);
         state.log(PRIMITIVES_MATRIX + array);
     }
 
@@ -126,6 +134,7 @@ public class Logger {
         for (String string : strings) {
             array.append(string).append("\n");
         }
+        state = state.swichToNewState(UNBUFFERED_STATE);
         state.log(PRIMITIVE_ARRAY + array);
     }
 
@@ -136,6 +145,7 @@ public class Logger {
     public void log(int... nums) {
         StringBuilder array = new StringBuilder("");
         array.append(makeOneString(nums));
+        state = state.swichToNewState(UNBUFFERED_STATE);
         state.log(PRIMITIVE_ARRAY + array);
     }
 
@@ -161,6 +171,7 @@ public class Logger {
             multiMatr.append("}\n");
         }
         multiMatr.append("}");
+        state = state.swichToNewState(UNBUFFERED_STATE);
         state.log(PRIMITIVES_MULTI_MATRIX + multiMatr);
     }
 

@@ -18,30 +18,6 @@ public class StateInt extends State {
         this.printer = printer;
     }
 
-
-    /**
-     * change state
-     *
-     * @return StateString
-     */
-    @Override
-    public State swichStateToIntState() {
-        if (bufFlag) {
-            flush();
-        }
-        return new StateString(printer);
-    }
-
-    /**
-     * change state
-     *
-     * @return StateInt
-     */
-    @Override
-    public State swichStateToStringState() {
-        return this;
-    }
-
     /**
      * @param mes this paramert will be loged
      */

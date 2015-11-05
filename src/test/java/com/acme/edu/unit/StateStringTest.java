@@ -54,10 +54,10 @@ public class StateStringTest {
 
     }
 
-    @Test
-    public void shouldSaveState() {
-        assertEquals(state, state.swichStateToIntState());
-    }
+//    @Test
+//    public void shouldSaveState() {
+//        assertEquals(state, state.swichStateToIntState());
+//    }
 
 
 

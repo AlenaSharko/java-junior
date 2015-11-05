@@ -43,20 +43,22 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         //endregion
     }
 
-    @Test
-    public void shouldLogByte() throws IOException {
-        //region when
-        logger.log((byte)1);
-        logger.log((byte)0);
-        logger.log((byte)-1);
-        logger.close();
-        //endregion
 
-        //region then
-        assertSysoutContains("primitive: ");
-        assertSysoutEquals("primitive: " + "0\n");
-        //endregion
-    }
+
+//    @Test
+//    public void shouldLogByte() throws IOException {
+//        //region when
+//        logger.log((byte)1);
+//        logger.log((byte)0);
+//        logger.log((byte)-1);
+//        logger.close();
+//        //endregion
+//
+//        //region then
+//        assertSysoutContains("primitive: ");
+//        assertSysoutEquals("primitive: " + "0\n");
+//        //endregion
+//    }
 
     @Test
     public void shouldLogChar() throws IOException {

@@ -100,10 +100,10 @@ public class StateIntTest {
         verify(printer).print("primitive: " + (Integer.MAX_VALUE - 2));
     }
 
-    @Test
-    public void shouldSaveState() {
-        assertEquals(state, state.swichStateToStringState());
-    }
+//    @Test
+//    public void shouldSaveState() {
+//        assertEquals(state, state.swichStateToStringState());
+//    }
 
 
 }
