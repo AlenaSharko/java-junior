@@ -47,9 +47,17 @@ public class Logger {
 
     //endregion
 
-    private Printer printer = new ConsolPrinter();
+    private State state;
+    private Printer printer;
 
-    State state = new StateDefault(printer);
+    /**
+     * Constructor
+     */
+    public Logger(State state) {
+        this.state = state;
+
+    }
+
 
     /**
      * log integer values

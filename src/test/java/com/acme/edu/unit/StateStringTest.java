@@ -2,10 +2,12 @@ package com.acme.edu.unit;
 
 import com.acme.edu.ConsolPrinter;
 import com.acme.edu.Printer;
+import com.acme.edu.StateInt;
 import com.acme.edu.StateString;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -51,6 +53,13 @@ public class StateStringTest {
         verify(printer, times(1)).print("string: string 2 (x2)");
 
     }
+
+    @Test
+    public void shouldSaveState() {
+        assertEquals(state, state.swichStateToIntState());
+    }
+
+
 
 
 

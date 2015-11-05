@@ -6,6 +6,7 @@ import com.acme.edu.StateInt;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 /**
@@ -97,6 +98,11 @@ public class StateIntTest {
 
         verify(printer).print("primitive: 8");
         verify(printer).print("primitive: " + (Integer.MAX_VALUE - 2));
+    }
+
+    @Test
+    public void shouldSaveState() {
+        assertEquals(state, state.swichStateToStringState());
     }
 
 

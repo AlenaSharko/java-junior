@@ -11,12 +11,12 @@ public abstract class State {
      *
      * @param mes this paramert will be loged
      */
-    abstract void log(String mes);
+    public abstract void log(String mes);
 
     /**
      * drop prepared stirng to print
      */
-    abstract void flush();
+    public abstract void flush();
 
     /**
      * change state
