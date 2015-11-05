@@ -60,8 +60,19 @@ public class Logger {
     }
 
     // region Constants state
+    /**
+     * Integer state constant for comparation to swich state
+     */
     public final State INT_STATE = new StateInt(printer);
+
+    /**
+     * String state constant for comparation to swich state
+     */
     public final State STRING_STATE = new StateString(printer);
+
+    /**
+     * Default state constant for comparation to swich state
+     */
     public final State UNBUFFERED_STATE = new StateUnBuffered(printer);
     //endregion
 

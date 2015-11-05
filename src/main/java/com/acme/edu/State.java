@@ -19,7 +19,11 @@ public abstract class State {
     public abstract void flush();
 
 
-
+    /**
+     * Swich states
+     * @param state current state
+     * @return current state if previous state was same and another state if not
+     */
     public State swichToNewState(State state) {
         if(this == state) {
             return this;

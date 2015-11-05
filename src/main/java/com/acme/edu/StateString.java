@@ -58,11 +58,4 @@ public class StateString extends State {
 
     }
 
-
-    private static int findStringNum(String message) {
-        String[] arr = message.split(" ");
-        return Integer.parseInt(arr[arr.length - 1]);
-    }
-
-
 }
