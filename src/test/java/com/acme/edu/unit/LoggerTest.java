@@ -51,5 +51,14 @@ public class LoggerTest {
         verify(state).log("primitive: true");
     }
 
+    @Test
+    public void ShouldCallLogUnbufferedStateMethodWhenCharValuecome() {
+        when(state.swichToNewState(any())).thenReturn(state);
+        logger = new Logger(state);
+
+        logger.log('a');
+        verify(state).log("char: a");
+    }
+
 
 }
