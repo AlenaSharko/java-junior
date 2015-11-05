@@ -29,28 +29,28 @@ public class StateStringTest {
     @Test
     public void shouldCallPrinterOneTimeWhenStringCome() {
 
-        state.log("string 2");
+        state.log("string 1");
         state.flush();
-        verify(printer, times(1)).print("string: string 2");
+        verify(printer, times(1)).print("string: string 1");
     }
 
     @Test
     public void shouldCallPrinterTwoTimesWhenTwoDifferentStringsCome() {
 
+        state.log("string 1");
         state.log("string 2");
-        state.log("string 3");
         state.flush();
+        verify(printer, times(1)).print("string: string 1");
         verify(printer, times(1)).print("string: string 2");
-        verify(printer, times(1)).print("string: string 3");
     }
 
     @Test
     public void shouldCallPrinterOneTimesWhenTwoSameStringsCome() {
 
-        state.log("string 2");
-        state.log("string 2");
+        state.log("string 1");
+        state.log("string 1");
         state.flush();
-        verify(printer, times(1)).print("string: string 2 (x2)");
+        verify(printer, times(1)).print("string: string 1 (x2)");
 
     }
 

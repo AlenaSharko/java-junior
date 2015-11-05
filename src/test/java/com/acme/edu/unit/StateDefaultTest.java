@@ -29,11 +29,11 @@ public class StateDefaultTest {
         Object object = new Object();
         boolean dummy = true;
 
-        state.log("char: " + 'w');
+        state.log("char: " + 'a');
         state.log("reference: " + "@" + object);
         state.log("primitive: " + dummy);
 
-        verify(printer, times(1)).print("char: " + 'w');
+        verify(printer, times(1)).print("char: " + 'a');
         verify(printer, times(1)).print("reference: " + "@" + object.toString());
         verify(printer, times(1)).print("primitive: " + true);
 

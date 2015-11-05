@@ -22,8 +22,8 @@ public class PrinterTest implements SysoutCaptureAndAssertionAbility {
     @Test
     public void shouldPrint() {
         captureSysout();
-        printer.print("ParamPam");
-        assertSysoutContains("ParamPam");
-        assertSysoutEquals("ParamPam\n");
+        printer.print("TestString");
+        assertSysoutContains("TestString");
+        assertSysoutEquals("TestString\n");
     }
 }
