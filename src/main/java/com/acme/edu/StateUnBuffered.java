@@ -5,14 +5,14 @@ package com.acme.edu;
  *
  * @author Alena Sharko
  */
-public class StateDefault extends State {
+public class StateUnBuffered extends State {
 
     private Printer printer;
 
     /**
      * constructor
      */
-    public StateDefault(Printer printer) {
+    public StateUnBuffered(Printer printer) {
         this.printer = printer;
     }
     /**

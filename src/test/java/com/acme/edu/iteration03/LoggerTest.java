@@ -16,7 +16,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         resetOut();
         captureSysout();
         Printer printer = new ConsolPrinter();
-        State state = new StateDefault(printer);
+        State state = new StateUnBuffered(printer);
         logger = new Logger(state);
     }
     //endregion

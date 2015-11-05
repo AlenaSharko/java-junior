@@ -48,7 +48,6 @@ public class Logger {
     //endregion
 
     private State state;
-    private Printer printer;
 
     /**
      * Constructor
