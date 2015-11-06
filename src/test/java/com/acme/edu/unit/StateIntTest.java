@@ -1,5 +1,6 @@
 package com.acme.edu.unit;
 
+import com.acme.edu.Printers.ConsolPrinter;
 import com.acme.edu.Printers.Printer;
 import com.acme.edu.States.StateInt;
 import org.junit.Before;
@@ -18,7 +19,7 @@ public class StateIntTest {
 
     @Before
     public void setUp() {
-        printer = mock(Printer.ConsolPrinter.class);
+        printer = mock(ConsolPrinter.class);
         state = new StateInt(printer);
     }
 

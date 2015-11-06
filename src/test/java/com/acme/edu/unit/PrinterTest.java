@@ -1,5 +1,6 @@
 package com.acme.edu.unit;
 
+import com.acme.edu.Printers.ConsolPrinter;
 import com.acme.edu.Printers.Printer;
 import com.acme.edu.SysoutCaptureAndAssertionAbility;
 import org.junit.Before;
@@ -15,7 +16,7 @@ public class PrinterTest implements SysoutCaptureAndAssertionAbility {
 
     @Before
     public void setUp() {
-        printer= new Printer.ConsolPrinter();
+        printer= new ConsolPrinter();
     }
 
     @Test
