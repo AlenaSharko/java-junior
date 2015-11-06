@@ -74,5 +74,15 @@ public class LoggerTest {
         verify(state).log("reference: @" + dummy.toString());
     }
 
+    @Test
+    public void ShouldCallLogUnbufferedStateMethodWhenArrayCome() {
+        when(state.swichToNewState(any())).thenReturn(state);
+        logger = new Logger(state);
+        int[] arr = {1, 2, 3};
+
+        logger.log(arr);
+        verify(state).log("primitives array: {1, 2, 3}");
+    }
+
 
 }
