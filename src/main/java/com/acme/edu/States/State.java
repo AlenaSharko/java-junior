@@ -1,4 +1,4 @@
-package com.acme.edu;
+package com.acme.edu.States;
 
 /**
  * switch states depending on the input parameter

@@ -1,4 +1,7 @@
-package com.acme.edu;
+package com.acme.edu.States;
+
+import com.acme.edu.Printers.Printer;
+import com.acme.edu.States.State;
 
 /**
  * Default state befoe any challenges

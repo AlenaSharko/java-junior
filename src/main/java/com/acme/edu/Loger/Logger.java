@@ -1,4 +1,10 @@
-package com.acme.edu;
+package com.acme.edu.Loger;
+
+import com.acme.edu.Printers.Printer;
+import com.acme.edu.States.State;
+import com.acme.edu.States.StateInt;
+import com.acme.edu.States.StateString;
+import com.acme.edu.States.StateUnBuffered;
 
 /**
  * log different values
@@ -50,7 +56,7 @@ public class Logger {
 
 
     private State state;
-    private Printer printer = new ConsolPrinter();
+    private Printer printer = new Printer.ConsolPrinter();
 
     /**
      * Constructor

@@ -1,6 +1,7 @@
 package com.acme.edu.unit;
 
-import com.acme.edu.*;
+import com.acme.edu.Loger.Logger;
+import com.acme.edu.States.State;
 import org.junit.Before;
 import org.junit.Test;
 

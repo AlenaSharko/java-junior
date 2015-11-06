@@ -1,6 +1,10 @@
 package com.acme.edu.iteration01;
 
 import com.acme.edu.*;
+import com.acme.edu.Loger.Logger;
+import com.acme.edu.Printers.Printer;
+import com.acme.edu.States.State;
+import com.acme.edu.States.StateUnBuffered;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -17,7 +21,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     public void setUpSystemOut() throws IOException {
         resetOut();
         captureSysout();
-        Printer printer = new ConsolPrinter();
+        Printer printer = new Printer.ConsolPrinter();
         State state = new StateUnBuffered(printer);
         logger = new Logger(state);
     }
