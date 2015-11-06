@@ -93,5 +93,14 @@ public class LoggerTest {
         verify(state).log("primitives array: {1, 2, 3}");
     }
 
+    @Test
+    public void ShouldCallLogUnbufferedStateMethodWhenVarragsStringArrayCome() {
+        when(state.swichToNewState(any())).thenReturn(state);
+        logger = new Logger(state);
+
+        logger.log("test str1" , "test str2", "test str3");
+        verify(state).log("primitives array: test str1\ntest str2\ntest str3\n");
+    }
+
 
 }
