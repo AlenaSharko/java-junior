@@ -53,17 +53,8 @@ public class Logger {
 
     //endregion
 
-
-
     private State state;
     private Printer printer = new Printer.ConsolPrinter();
-
-    /**
-     * Constructor
-     */
-    public Logger(State state) {
-        this.state = state;
-    }
 
     // region Constants state
     /**
@@ -81,6 +72,13 @@ public class Logger {
      */
     public final State UNBUFFERED_STATE = new StateUnBuffered(printer);
     //endregion
+
+    /**
+     * Constructor
+     */
+    public Logger(State state) {
+        this.state = state;
+    }
 
     /**
      * log integer values

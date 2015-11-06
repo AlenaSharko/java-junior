@@ -5,7 +5,10 @@ import com.acme.edu.States.State;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Objects;
+
 import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyVararg;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -59,6 +62,16 @@ public class LoggerTest {
 
         logger.log('a');
         verify(state).log("char: a");
+    }
+
+    @Test
+    public void ShouldCallLogUnbufferedStateMethodWhenObjectValueCome() {
+        when(state.swichToNewState(any())).thenReturn(state);
+        logger = new Logger(state);
+        Object dummy = new Object();
+
+        logger.log(dummy);
+        verify(state).log("reference: @" + dummy.toString());
     }
 
 
