@@ -102,5 +102,18 @@ public class LoggerTest {
         verify(state).log("primitives array: test str1\ntest str2\ntest str3\n");
     }
 
+    @Test
+    public void ShouldCallLogUnbufferedStateMethodWhenMatrixCome() {
+        when(state.swichToNewState(any())).thenReturn(state);
+        logger = new Logger(state);
+        int[][] arr = new int[][] {{1, 1, 1}, {0, 0, 0}, {-1, -1, -1}};
+
+        logger.log(arr);
+        verify(state).log("primitives matrix: {\n" +
+                "{1, 1, 1}\n" +
+                "{0, 0, 0}\n" +
+                "{-1, -1, -1}\n" +
+                "}");
+    }
 
 }
