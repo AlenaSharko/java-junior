@@ -1,5 +1,7 @@
 package com.acme.edu.Loger;
 
+import com.acme.edu.Printers.ConsolPrinter;
+import com.acme.edu.Printers.PrintFile;
 import com.acme.edu.Printers.Printer;
 import com.acme.edu.States.State;
 import com.acme.edu.States.StateInt;
@@ -54,7 +56,9 @@ public class Logger {
     //endregion
 
     private State state;
-    private Printer printer = new Printer.ConsolPrinter();
+
+    private Printer printer = new ConsolPrinter();
+    private Printer filePrinter = new PrintFile();
 
     // region Constants state
     /**

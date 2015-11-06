@@ -5,7 +5,7 @@ package com.acme.edu.Printers;
  *
  * @author Alena Sharko
  */
-class ConsolPrinter implements Printer {
+public class ConsolPrinter implements Printer {
 
     @Override
     public void print(String message) {
