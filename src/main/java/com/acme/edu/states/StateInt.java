@@ -51,7 +51,6 @@ public class StateInt extends State {
         for (Printer currentPrinter : printers) {
             currentPrinter.print(Logger.PRIMITIVE + intBuf);
         }
-
         intBuf = 0;
     }
 

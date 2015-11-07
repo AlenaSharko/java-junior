@@ -1,26 +1,19 @@
 package com.acme.edu.iteration03;
 
-import com.acme.edu.*;
+import com.acme.edu.SysoutCaptureAndAssertionAbility;
 import com.acme.edu.exeptions.LoggerExeption;
 import com.acme.edu.logger.Logger;
 import com.acme.edu.printers.ConsolPrinter;
-import com.acme.edu.printers.FilePrinter;
-import com.acme.edu.printers.NetPrinter;
-import com.acme.edu.printers.Printer;
-import com.acme.edu.states.State;
 import com.acme.edu.states.StateUnBuffered;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
-
 @Ignore
 public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     private Logger logger;
+
     //region given
     @Before
     public void setUpSystemOut() throws LoggerExeption {
@@ -28,6 +21,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         captureSysout();
         logger = new Logger(new StateUnBuffered(new ConsolPrinter()));
     }
+
     //endregion
     @After
     public void tearDown() {
@@ -38,46 +32,44 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     @Test
     public void shouldLogIntegersArray() throws LoggerExeption {
         //region when
-        logger.log(new int[] {-1, 0, 1});
+        logger.log(new int[]{-1, 0, 1});
         //endregion
 
         //region then
         assertSysoutEquals(
-                "primitives array: {-1, 0, 1}\n"
-        );
+                "primitives array: {-1, 0, 1}" + Logger.SEP);
         //endregion
     }
 
     @Test
     public void shouldLogIntegersMatrix() throws LoggerExeption {
         //region when
-        logger.log(new int[][] {{-1, 0, 1}, {1, 2, 3}, {-1, -2, -3}});
+        logger.log(new int[][]{{-1, 0, 1}, {1, 2, 3}, {-1, -2, -3}});
         //endregion
 
         //region then
         assertSysoutEquals(
-                "primitives matrix: {\n" +
-                        "{-1, 0, 1}\n" +
-                        "{1, 2, 3}\n" +
-                        "{-1, -2, -3}\n" +
-                        "}\n"
-        );
+                "primitives matrix: {" + Logger.SEP +
+                        "{-1, 0, 1}" + Logger.SEP +
+                        "{1, 2, 3}" + Logger.SEP +
+                        "{-1, -2, -3}" + Logger.SEP +
+                        "}" + Logger.SEP);
         //endregion
     }
 
     @Test
     public void shouldLogIntegersMulitidimentionalArray() throws LoggerExeption {
         //region when
-        logger.log(new int[][][][] {{{{0}}}});
+        logger.log(new int[][][][]{{{{0}}}});
         //endregion
 
         //region then
         assertSysoutEquals(
-            "primitives multimatrix: {\n" +
-                "{\n" + "{\n" + "{\n" +
-                    "0\n" +
-                "}\n" + "}\n" + "}\n" +
-            "}\n"
+                "primitives multimatrix: {" + Logger.SEP +
+                        "{" + Logger.SEP + "{" + Logger.SEP + "{" + Logger.SEP +
+                        "0" + Logger.SEP +
+                        "}" + Logger.SEP + "}" + Logger.SEP + "}" + Logger.SEP +
+                        "}" + Logger.SEP
         );
         //endregion
     }
@@ -89,7 +81,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         //endregion
 
         //region then
-        assertSysoutContains("str1\nstring 2\nstr 3");
+        assertSysoutContains("str1" + Logger.SEP + "string 2" + Logger.SEP + "str 3");
         //endregion
     }
 

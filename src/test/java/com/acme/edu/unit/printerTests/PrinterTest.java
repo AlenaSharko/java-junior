@@ -1,6 +1,7 @@
 package com.acme.edu.unit.printerTests;
 
 import com.acme.edu.exeptions.PrinterExeption;
+import com.acme.edu.logger.Logger;
 import com.acme.edu.printers.ConsolPrinter;
 import com.acme.edu.printers.Printer;
 import com.acme.edu.SysoutCaptureAndAssertionAbility;
@@ -30,6 +31,6 @@ public class PrinterTest implements SysoutCaptureAndAssertionAbility {
         }
 
         assertSysoutContains("TestString");
-        assertSysoutEquals("TestString\n");
+        assertSysoutEquals("TestString" + Logger.SEP);
     }
 }

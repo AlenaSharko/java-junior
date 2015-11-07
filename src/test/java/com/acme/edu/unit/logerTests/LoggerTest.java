@@ -25,7 +25,7 @@ public class LoggerTest {
     }
 
     @Test
-    public void ShouldCallLogIntegerStateMethodWhenIntagerValueCome() throws PrinterExeption, LoggerExeption{
+    public void ShouldCallLogIntegerStateMethodWhenIntagerValueCome() throws PrinterExeption, LoggerExeption {
 
         when(state.swichToNewState(any())).thenReturn(state);
         logger = new Logger(state);
@@ -35,7 +35,7 @@ public class LoggerTest {
     }
 
     @Test
-    public void ShouldCallLogStingStateMethodWhenStringValueCome() throws PrinterExeption, LoggerExeption{
+    public void ShouldCallLogStingStateMethodWhenStringValueCome() throws PrinterExeption, LoggerExeption {
         when(state.swichToNewState(any())).thenReturn(state);
         logger = new Logger(state);
 
@@ -44,7 +44,7 @@ public class LoggerTest {
     }
 
     @Test
-    public void ShouldCallLogUnbufferedStateMethodWhenBoolValueCome() throws PrinterExeption, LoggerExeption{
+    public void ShouldCallLogUnbufferedStateMethodWhenBoolValueCome() throws PrinterExeption, LoggerExeption {
         when(state.swichToNewState(any())).thenReturn(state);
         logger = new Logger(state);
 
@@ -53,7 +53,7 @@ public class LoggerTest {
     }
 
     @Test
-    public void ShouldCallLogUnbufferedStateMethodWhenCharValuecome() throws PrinterExeption, LoggerExeption{
+    public void ShouldCallLogUnbufferedStateMethodWhenCharValuecome() throws PrinterExeption, LoggerExeption {
         when(state.swichToNewState(any())).thenReturn(state);
         logger = new Logger(state);
 
@@ -62,7 +62,7 @@ public class LoggerTest {
     }
 
     @Test
-    public void ShouldCallLogUnbufferedStateMethodWhenObjectValueCome()throws PrinterExeption, LoggerExeption {
+    public void ShouldCallLogUnbufferedStateMethodWhenObjectValueCome() throws PrinterExeption, LoggerExeption {
         when(state.swichToNewState(any())).thenReturn(state);
         logger = new Logger(state);
         Object dummy = new Object();
@@ -72,7 +72,7 @@ public class LoggerTest {
     }
 
     @Test
-    public void ShouldCallLogUnbufferedStateMethodWhenArrayCome()throws PrinterExeption, LoggerExeption {
+    public void ShouldCallLogUnbufferedStateMethodWhenArrayCome() throws PrinterExeption, LoggerExeption {
         when(state.swichToNewState(any())).thenReturn(state);
         logger = new Logger(state);
         int[] arr = {1, 2, 3};
@@ -82,7 +82,7 @@ public class LoggerTest {
     }
 
     @Test
-    public void ShouldCallLogUnbufferedStateMethodWhenVarragsArrayCome() throws PrinterExeption, LoggerExeption{
+    public void ShouldCallLogUnbufferedStateMethodWhenVarragsArrayCome() throws PrinterExeption, LoggerExeption {
         when(state.swichToNewState(any())).thenReturn(state);
         logger = new Logger(state);
 
@@ -91,37 +91,37 @@ public class LoggerTest {
     }
 
     @Test
-    public void ShouldCallLogUnbufferedStateMethodWhenVarragsStringArrayCome()throws PrinterExeption, LoggerExeption {
+    public void ShouldCallLogUnbufferedStateMethodWhenVarragsStringArrayCome() throws PrinterExeption, LoggerExeption {
         when(state.swichToNewState(any())).thenReturn(state);
         logger = new Logger(state);
 
         logger.log("test str1", "test str2", "test str3");
-        verify(state).log("primitives array: test str1\ntest str2\ntest str3\n");
+        verify(state).log("primitives array: test str1" + Logger.SEP + "test str2" + Logger.SEP + "test str3" + Logger.SEP);
     }
 
     @Test
-    public void ShouldCallLogUnbufferedStateMethodWhenMatrixCome()throws PrinterExeption, LoggerExeption {
+    public void ShouldCallLogUnbufferedStateMethodWhenMatrixCome() throws PrinterExeption, LoggerExeption {
         when(state.swichToNewState(any())).thenReturn(state);
         logger = new Logger(state);
         int[][] arr = new int[][]{{1, 1, 1}, {0, 0, 0}, {-1, -1, -1}};
 
         logger.log(arr);
         verify(state).log("primitives matrix: {\n" +
-                "{1, 1, 1}\n" +
-                "{0, 0, 0}\n" +
-                "{-1, -1, -1}\n" +
+                "{1, 1, 1}" + Logger.SEP +
+                "{0, 0, 0}" + Logger.SEP +
+                "{-1, -1, -1}" + Logger.SEP +
                 "}");
     }
 
 
     @Test
-    public void ShouldCallLogUnbufferedStateMethodWhenMultiMatrixCome()throws PrinterExeption, LoggerExeption {
+    public void ShouldCallLogUnbufferedStateMethodWhenMultiMatrixCome() throws PrinterExeption, LoggerExeption {
         when(state.swichToNewState(any())).thenReturn(state);
         logger = new Logger(state);
         int[][][][] arr = new int[][][][]{{{{1}}}};
 
         logger.log(arr);
-        verify(state).log("primitives multimatrix: {\n" + "{\n" + "{\n" + "{\n" +
-                "1\n" + "}\n" + "}\n" + "}\n" + "}");
+        verify(state).log("primitives multimatrix: {" + Logger.SEP + "{" + Logger.SEP + "{" + Logger.SEP + "{" + Logger.SEP +
+                "1" + Logger.SEP + "}" + Logger.SEP + "}" + Logger.SEP + "}" + Logger.SEP + "}");
     }
 }

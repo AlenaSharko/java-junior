@@ -1,15 +1,8 @@
 package com.acme.edu.logger;
 
-import com.acme.edu.exeptions.LoggerExeption;
-import com.acme.edu.exeptions.NullValueExeption;
-import com.acme.edu.exeptions.PrinterExeption;
-import com.acme.edu.printers.ConsolPrinter;
-import com.acme.edu.printers.FilePrinter;
-import com.acme.edu.printers.Printer;
-import com.acme.edu.states.State;
-import com.acme.edu.states.StateInt;
-import com.acme.edu.states.StateString;
-import com.acme.edu.states.StateUnBuffered;
+import com.acme.edu.exeptions.*;
+import com.acme.edu.printers.*;
+import com.acme.edu.states.*;
 
 /**
  * log different values
@@ -75,8 +68,23 @@ public class Logger {
      * Decoration for multimatrix
      */
     public static final String PRIMITIVES_MULTI_MATRIX = "primitives multimatrix: ";
+    /**
+     * Decoration - another line
+     */
+    public static final String SEP = System.lineSeparator();
 
     //endregion
+
+    // region Explain constants
+    /**
+     * Constant explain that object which we want to log = null
+     */
+    public static final String NULL = "Null value";
+    /**
+     * Constant explain that message cant be print
+     */
+    public static final String UMPOSIPLE_PRIT = "Cant Print log";
+    // endregion
 
     /**
      * Constructor
@@ -93,15 +101,14 @@ public class Logger {
         try {
             checkingForNull(message);
         }catch (NullValueExeption ex) {
-            new LoggerExeption("Null value" , ex);
+            new LoggerExeption(NULL , ex);
         }
         try {
             state = state.swichToNewState(INT_STATE);
             state.log(message + "");
         } catch (PrinterExeption ex) {
-            new LoggerExeption("Cant Print log", ex);
+            new LoggerExeption(UMPOSIPLE_PRIT , ex);
         }
-
     }
 
     /**
@@ -112,13 +119,13 @@ public class Logger {
         try {
             checkingForNull(message);
         }catch (NullValueExeption ex) {
-            new LoggerExeption("Null value" , ex);
+            new LoggerExeption(NULL, ex);
         }
         try {
             state = state.swichToNewState(STRING_STATE);
             state.log(message);
         } catch (PrinterExeption ex) {
-            new LoggerExeption("Cant Print log",ex);
+            new LoggerExeption(UMPOSIPLE_PRIT ,ex);
         }
 
     }
@@ -131,13 +138,13 @@ public class Logger {
         try {
             checkingForNull(message);
         }catch (NullValueExeption ex) {
-            new LoggerExeption("Null value" , ex);
+            new LoggerExeption(NULL , ex);
         }
         try {
             state = state.swichToNewState(UNBUFFERED_STATE);
             state.log(CHAR + message);
         } catch (PrinterExeption ex) {
-            new LoggerExeption("Cant Print log",ex);
+            new LoggerExeption(UMPOSIPLE_PRIT,ex);
         }
 
     }
@@ -150,13 +157,13 @@ public class Logger {
         try {
             checkingForNull(message);
         }catch (NullValueExeption ex) {
-            new LoggerExeption("Null value" , ex);
+            new LoggerExeption(NULL , ex);
         }
         try {
             state = state.swichToNewState(UNBUFFERED_STATE);
             state.log(PRIMITIVE + message);
         } catch (PrinterExeption ex) {
-            new LoggerExeption("Cant Print log",ex);
+            new LoggerExeption(UMPOSIPLE_PRIT,ex);
         }
 
     }
@@ -170,13 +177,13 @@ public class Logger {
         try {
             checkingForNull(message);
         }catch (NullValueExeption ex) {
-            new LoggerExeption("Null value" , ex);
+            new LoggerExeption(NULL , ex);
         }
         try {
             state = state.swichToNewState(UNBUFFERED_STATE);
             state.log(REFERENCE + AT + message.toString());
         } catch (PrinterExeption ex) {
-            new LoggerExeption("Cant Print log",ex);
+            new LoggerExeption(UMPOSIPLE_PRIT,ex);
         }
 
     }
@@ -189,11 +196,11 @@ public class Logger {
         try {
             checkingForNull(matrix);
         }catch (NullValueExeption ex) {
-            new LoggerExeption("Null value" , ex);
+            new LoggerExeption(NULL , ex);
         }
-        StringBuilder array = new StringBuilder(" {\n");
+        StringBuilder array = new StringBuilder(" {" + SEP);
         for (int[] xi : matrix) {
-            array.append(makeOneString(xi)).append("\n");
+            array.append(makeOneString(xi)).append(SEP);
         }
         array.append("}");
 
@@ -201,7 +208,7 @@ public class Logger {
             state = state.swichToNewState(UNBUFFERED_STATE);
             state.log(PRIMITIVES_MATRIX + array);
         } catch (PrinterExeption ex) {
-            new LoggerExeption("Cant Print log",ex);
+            new LoggerExeption(UMPOSIPLE_PRIT,ex);
         }
     }
 
@@ -213,7 +220,7 @@ public class Logger {
         try {
             checkingForNull(strings);
         }catch (NullValueExeption ex) {
-            new LoggerExeption("Null value" , ex);
+            new LoggerExeption(NULL , ex);
         }
         StringBuilder array = new StringBuilder();
         for (String string : strings) {
@@ -223,7 +230,7 @@ public class Logger {
             state = state.swichToNewState(UNBUFFERED_STATE);
             state.log(PRIMITIVE_ARRAY + array);
         } catch (PrinterExeption ex) {
-            new LoggerExeption("Cant Print log",ex);
+            new LoggerExeption(UMPOSIPLE_PRIT,ex);
         }
     }
 
@@ -235,7 +242,7 @@ public class Logger {
         try {
             checkingForNull(nums);
         }catch (NullValueExeption ex) {
-            new LoggerExeption("Null value" , ex);
+            new LoggerExeption(NULL , ex);
         }
         StringBuilder array = new StringBuilder("");
         array.append(makeOneString(nums));
@@ -243,7 +250,7 @@ public class Logger {
             state = state.swichToNewState(UNBUFFERED_STATE);
             state.log(PRIMITIVE_ARRAY + array);
         } catch (PrinterExeption ex) {
-            new LoggerExeption("Cant Print log",ex);
+            new LoggerExeption(UMPOSIPLE_PRIT,ex);
         }
 
     }
@@ -256,30 +263,30 @@ public class Logger {
         try {
             checkingForNull(array);
         }catch (NullValueExeption ex) {
-            new LoggerExeption("Null value" , ex);
+            new LoggerExeption(NULL , ex);
         }
-        StringBuilder multiMatr = new StringBuilder("{\n");
+        StringBuilder multiMatr = new StringBuilder("{" + SEP);
         for (int[][][] cube : array) {
-            multiMatr.append("{\n");
+            multiMatr.append("{" + SEP);
             for (int[][] rect : cube) {
-                multiMatr.append("{\n");
+                multiMatr.append("{" + SEP);
                 for (int[] line : rect) {
-                    multiMatr.append("{\n");
+                    multiMatr.append("{" + SEP);
                     for (int xi : line) {
-                        multiMatr.append(xi).append("\n");
+                        multiMatr.append(xi).append(SEP);
                     }
-                    multiMatr.append("}\n");
+                    multiMatr.append("}" + SEP);
                 }
-                multiMatr.append("}\n");
+                multiMatr.append("}" + SEP);
             }
-            multiMatr.append("}\n");
+            multiMatr.append("}" + SEP);
         }
         multiMatr.append("}");
         try {
             state = state.swichToNewState(UNBUFFERED_STATE);
             state.log(PRIMITIVES_MULTI_MATRIX + multiMatr);
         } catch (PrinterExeption ex) {
-            new LoggerExeption("Cant Print log",ex);
+            new LoggerExeption(UMPOSIPLE_PRIT,ex);
         }
 
     }
@@ -291,7 +298,7 @@ public class Logger {
         try {
             state.flush();
         } catch (PrinterExeption ex) {
-            new LoggerExeption("Cant Print log",ex);
+            new LoggerExeption(UMPOSIPLE_PRIT,ex);
         }
 
     }
@@ -307,7 +314,7 @@ public class Logger {
 
     private void checkingForNull(Object message) throws NullValueExeption{
         if(message == null) {
-            throw new NullValueExeption("Null Value");
+            throw new NullValueExeption(NULL);
         }
     }
 

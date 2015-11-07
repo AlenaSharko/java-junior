@@ -16,7 +16,6 @@ import java.util.*;
 import org.junit.After;
 @Ignore
 public class LoggerTest implements SysoutCaptureAndAssertionAbility {
-    //private static final String SEP = System.lineSeparator();
     Logger logger;
 
     //region given
