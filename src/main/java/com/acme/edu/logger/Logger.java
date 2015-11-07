@@ -13,7 +13,9 @@ import java.nio.charset.Charset;
 public class Logger {
 
     private State state;
-    private Printer[] printers = {new ConsolPrinter(), new FilePrinter("ClientFile", Charset.defaultCharset())};
+    private Printer[] printers = {new ConsolPrinter(),
+            new FilePrinter("ClientFile", Charset.defaultCharset()),
+            new NetPrinter()};
 
     // region Constants state
     /**
