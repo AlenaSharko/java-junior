@@ -1,7 +1,7 @@
-package com.acme.edu.unit;
+package com.acme.edu.unit.printerTests;
 
-import com.acme.edu.Printers.ConsolPrinter;
-import com.acme.edu.Printers.Printer;
+import com.acme.edu.printers.ConsolPrinter;
+import com.acme.edu.printers.Printer;
 import com.acme.edu.SysoutCaptureAndAssertionAbility;
 import org.junit.Before;
 import org.junit.Test;

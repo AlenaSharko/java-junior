@@ -1,17 +1,12 @@
-package com.acme.edu.unit;
+package com.acme.edu.unit.logerTests;
 
-import com.acme.edu.Loger.Logger;
-import com.acme.edu.States.State;
+import com.acme.edu.loger.Logger;
+import com.acme.edu.states.State;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Objects;
-
 import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyVararg;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 /**
  * Test Logger
@@ -98,7 +93,7 @@ public class LoggerTest {
         when(state.swichToNewState(any())).thenReturn(state);
         logger = new Logger(state);
 
-        logger.log("test str1" , "test str2", "test str3");
+        logger.log("test str1", "test str2", "test str3");
         verify(state).log("primitives array: test str1\ntest str2\ntest str3\n");
     }
 
@@ -106,7 +101,7 @@ public class LoggerTest {
     public void ShouldCallLogUnbufferedStateMethodWhenMatrixCome() {
         when(state.swichToNewState(any())).thenReturn(state);
         logger = new Logger(state);
-        int[][] arr = new int[][] {{1, 1, 1}, {0, 0, 0}, {-1, -1, -1}};
+        int[][] arr = new int[][]{{1, 1, 1}, {0, 0, 0}, {-1, -1, -1}};
 
         logger.log(arr);
         verify(state).log("primitives matrix: {\n" +
@@ -117,5 +112,14 @@ public class LoggerTest {
     }
 
 
+    @Test
+    public void ShouldCallLogUnbufferedStateMethodWhenMultiMatrixCome() {
+        when(state.swichToNewState(any())).thenReturn(state);
+        logger = new Logger(state);
+        int[][][][] arr = new int[][][][]{{{{1}}}};
 
+        logger.log(arr);
+        verify(state).log("primitives multimatrix: {\n" + "{\n" + "{\n" + "{\n" +
+                "1\n" + "}\n" + "}\n" + "}\n" + "}");
+    }
 }

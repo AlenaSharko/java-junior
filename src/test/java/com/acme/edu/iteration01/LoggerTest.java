@@ -1,30 +1,31 @@
 package com.acme.edu.iteration01;
 
 import com.acme.edu.*;
-import com.acme.edu.Loger.Logger;
-import com.acme.edu.Printers.ConsolPrinter;
-import com.acme.edu.Printers.Printer;
-import com.acme.edu.States.State;
-import com.acme.edu.States.StateUnBuffered;
+import com.acme.edu.loger.Logger;
+import com.acme.edu.printers.*;
+import com.acme.edu.states.*;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.*;
+import java.util.*;
+
+
 import org.junit.After;
 @Ignore
 public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     //private static final String SEP = System.lineSeparator();
-    private Logger logger;
+    Logger logger;
 
     //region given
     @Before
     public void setUpSystemOut() throws IOException {
+
         resetOut();
         captureSysout();
-        Printer printer = new ConsolPrinter();
-        State state = new StateUnBuffered(printer);
-        logger = new Logger(state);
+        logger = new Logger(new StateUnBuffered(new ConsolPrinter()));
+
     }
     //endregion
 
@@ -36,6 +37,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     @Test
     public void shouldLogInteger() throws IOException {
         //region when
+
         logger.log(1);
         logger.log(0);
         logger.log(-1);

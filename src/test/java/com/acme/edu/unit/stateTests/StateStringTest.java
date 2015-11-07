@@ -1,8 +1,8 @@
-package com.acme.edu.unit;
+package com.acme.edu.unit.stateTests;
 
-import com.acme.edu.Printers.ConsolPrinter;
-import com.acme.edu.Printers.Printer;
-import com.acme.edu.States.StateString;
+import com.acme.edu.printers.ConsolPrinter;
+import com.acme.edu.printers.Printer;
+import com.acme.edu.states.StateString;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -53,10 +53,7 @@ public class StateStringTest {
 
     }
 
-//    @Test
-//    public void shouldSaveState() {
-//        assertEquals(state, state.swichStateToIntState());
-//    }
+
 
 
 

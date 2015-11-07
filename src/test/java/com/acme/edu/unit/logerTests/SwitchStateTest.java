@@ -1,6 +1,6 @@
-package com.acme.edu.unit;
+package com.acme.edu.unit.logerTests;
 
-import com.acme.edu.Printers.Printer;
+import com.acme.edu.printers.Printer;
 import org.junit.Before;
 
 import static org.junit.Assert.assertEquals;

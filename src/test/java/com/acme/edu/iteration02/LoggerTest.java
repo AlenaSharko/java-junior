@@ -1,17 +1,22 @@
 package com.acme.edu.iteration02;
 
 import com.acme.edu.*;
-import com.acme.edu.Loger.Logger;
-import com.acme.edu.Printers.ConsolPrinter;
-import com.acme.edu.Printers.Printer;
-import com.acme.edu.States.State;
-import com.acme.edu.States.StateUnBuffered;
+import com.acme.edu.loger.Logger;
+import com.acme.edu.printers.ConsolPrinter;
+import com.acme.edu.printers.FilePrinter;
+import com.acme.edu.printers.NetPrinter;
+import com.acme.edu.printers.Printer;
+import com.acme.edu.states.State;
+import com.acme.edu.states.StateUnBuffered;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+
 @Ignore
 public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     private Logger logger;
@@ -20,9 +25,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     public void setUpSystemOut() throws IOException {
         resetOut();
         captureSysout();
-        Printer printer = new ConsolPrinter();
-        State state = new StateUnBuffered(printer);
-        logger = new Logger(state);
+        logger = new Logger(new StateUnBuffered(new ConsolPrinter()));
     }
     //endregion
     @After
@@ -75,7 +78,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     }
 
 //    @Test
-//    @Ignore
+//
 //    public void shouldLogCorrectlyByteOverflowWhenSequentBytes() {
 //        //region when
 //        logger.log("str 1");
@@ -96,7 +99,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
 //        );
 //        //endregion
 //    }
-//
+
     @Test
     public void shouldLogSameSubsequentStringsWithoutRepeat() throws IOException {
         //region when

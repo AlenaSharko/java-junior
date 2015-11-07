@@ -1,8 +1,8 @@
-package com.acme.edu.unit;
+package com.acme.edu.unit.stateTests;
 
-import com.acme.edu.Printers.ConsolPrinter;
-import com.acme.edu.Printers.Printer;
-import com.acme.edu.States.StateInt;
+import com.acme.edu.printers.ConsolPrinter;
+import com.acme.edu.printers.Printer;
+import com.acme.edu.states.StateInt;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -58,6 +58,19 @@ public class StateIntTest {
     }
 
     @Test
+    public void shouldCallPrinterForPrintMinValueAndCurrentValueWhenMinValueOverfow() {
+
+        state.log("" + Integer.MIN_VALUE);
+        state.log("-10");
+        state.flush();
+
+        verify(printer).print("primitive: " + Integer.MIN_VALUE);
+        verify(printer).print("primitive: -10");
+
+
+    }
+
+    @Test
     public void shouldCallPrinterForPrintMinValueAndCurrentValueWhenMinValueCome() {
         state.log("1");
         state.log("" + Integer.MIN_VALUE);
@@ -100,10 +113,7 @@ public class StateIntTest {
         verify(printer).print("primitive: " + (Integer.MAX_VALUE - 2));
     }
 
-//    @Test
-//    public void shouldSaveState() {
-//        assertEquals(state, state.swichStateToStringState());
-//    }
+
 
 
 }
