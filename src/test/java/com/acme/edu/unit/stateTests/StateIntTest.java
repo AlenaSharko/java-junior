@@ -1,10 +1,12 @@
 package com.acme.edu.unit.stateTests;
 
-import com.acme.edu.exeptions.LoggerExeption;
 import com.acme.edu.exeptions.PrinterExeption;
 import com.acme.edu.printers.ConsolPrinter;
 import com.acme.edu.printers.Printer;
+import com.acme.edu.states.State;
 import com.acme.edu.states.StateInt;
+import com.acme.edu.states.StateString;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -26,7 +28,7 @@ public class StateIntTest {
     }
 
     @Test
-    public void shouldCallPrinterOneTimeWhenOneIntegerValueCome() throws PrinterExeption{
+    public void shouldCallPrinterOneTimeWhenOneIntegerValueCome() throws PrinterExeption {
 
         state.log("1");
         state.flush();
@@ -36,7 +38,7 @@ public class StateIntTest {
     }
 
     @Test
-    public void shouldCallPrinterOneTimeForSumWhenSomeIntegerValuesCome() throws PrinterExeption{
+    public void shouldCallPrinterOneTimeForSumWhenSomeIntegerValuesCome() throws PrinterExeption {
 
         state.log("1");
         state.log("1");
@@ -47,7 +49,7 @@ public class StateIntTest {
     }
 
     @Test
-    public void shouldCallPrinterForPrintMaxValueAndCurrentValueWhenMaxValueCome()throws PrinterExeption {
+    public void shouldCallPrinterForPrintMaxValueAndCurrentValueWhenMaxValueCome() throws PrinterExeption {
 
 
         state.log("1");
@@ -60,7 +62,7 @@ public class StateIntTest {
     }
 
     @Test
-    public void shouldCallPrinterForPrintMinValueAndCurrentValueWhenMinValueOverfow()throws PrinterExeption {
+    public void shouldCallPrinterForPrintMinValueAndCurrentValueWhenMinValueOverfow() throws PrinterExeption {
 
         state.log("" + Integer.MIN_VALUE);
         state.log("-10");
@@ -73,7 +75,7 @@ public class StateIntTest {
     }
 
     @Test
-    public void shouldCallPrinterForPrintMinValueAndCurrentValueWhenMinValueCome() throws PrinterExeption{
+    public void shouldCallPrinterForPrintMinValueAndCurrentValueWhenMinValueCome() throws PrinterExeption {
         state.log("1");
         state.log("" + Integer.MIN_VALUE);
         state.flush();
@@ -83,7 +85,7 @@ public class StateIntTest {
     }
 
     @Test
-    public void shouldCallPrinterForPrintMinValueAndSumWhenMinValueCome() throws PrinterExeption{
+    public void shouldCallPrinterForPrintMinValueAndSumWhenMinValueCome() throws PrinterExeption {
         state.log("1");
         state.log("1");
         state.log("" + Integer.MIN_VALUE);
@@ -94,7 +96,7 @@ public class StateIntTest {
     }
 
     @Test
-    public void shouldCallPrinterForPrintMaxValueAndSumWhenMaxValueCome() throws PrinterExeption{
+    public void shouldCallPrinterForPrintMaxValueAndSumWhenMaxValueCome() throws PrinterExeption {
         state.log("1");
         state.log("1");
         state.log("" + Integer.MAX_VALUE);
@@ -105,7 +107,7 @@ public class StateIntTest {
     }
 
     @Test
-    public void shouldCallPrinterForPrintCurrentValueWhenIntegerOverFlow() throws PrinterExeption{
+    public void shouldCallPrinterForPrintCurrentValueWhenIntegerOverFlow() throws PrinterExeption {
         state.log("1");
         state.log("2");
         state.log("" + (Integer.MAX_VALUE - 2));
@@ -115,7 +117,20 @@ public class StateIntTest {
         verify(printer).print("primitive: " + (Integer.MAX_VALUE - 2));
     }
 
+    @Test
+    public void shouldntChengeStatw() throws PrinterExeption {
 
+        assertEquals(state, state.swichToNewState(state));
 
+    }
+
+//    @Test
+//    public void shouldSwichToStringState() throws PrinterExeption{
+//        State stete1 = mock(StateString.class);
+//
+//        when(state.swichToNewState(any())).thenReturn(stete1);
+//
+//        assertEquals(stete1,state.swichToNewState(state));
+//    }
 
 }

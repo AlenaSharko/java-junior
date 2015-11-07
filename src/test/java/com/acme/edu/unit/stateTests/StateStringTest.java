@@ -4,6 +4,7 @@ import com.acme.edu.exeptions.PrinterExeption;
 import com.acme.edu.printers.ConsolPrinter;
 import com.acme.edu.printers.Printer;
 import com.acme.edu.states.StateString;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -54,6 +55,14 @@ public class StateStringTest {
 
     }
 
+
+
+    @Test
+    public void shouldntChengeStatw() throws PrinterExeption {
+
+        Assert.assertEquals(state, state.swichToNewState(state));
+
+    }
 
 
 
