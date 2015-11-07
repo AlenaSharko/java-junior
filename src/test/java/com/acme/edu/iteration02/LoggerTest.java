@@ -1,7 +1,7 @@
 package com.acme.edu.iteration02;
 
 import com.acme.edu.*;
-import com.acme.edu.loger.Logger;
+import com.acme.edu.logger.Logger;
 import com.acme.edu.printers.ConsolPrinter;
 import com.acme.edu.printers.FilePrinter;
 import com.acme.edu.printers.NetPrinter;

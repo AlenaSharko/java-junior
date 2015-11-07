@@ -1,7 +1,7 @@
 package com.acme.edu.iteration01;
 
 import com.acme.edu.*;
-import com.acme.edu.loger.Logger;
+import com.acme.edu.logger.Logger;
 import com.acme.edu.printers.*;
 import com.acme.edu.states.*;
 import org.junit.Before;

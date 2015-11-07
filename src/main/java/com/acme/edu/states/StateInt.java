@@ -1,8 +1,8 @@
-package com.acme.edu.States;
+package com.acme.edu.states;
 
-import com.acme.edu.Loger.Logger;
-import com.acme.edu.Printers.Printer;
-import com.acme.edu.States.State;
+import com.acme.edu.logger.Logger;
+import com.acme.edu.printers.Printer;
+import com.acme.edu.states.State;
 
 /**
  * log integer values

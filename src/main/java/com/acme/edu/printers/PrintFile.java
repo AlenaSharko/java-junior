@@ -1,4 +1,4 @@
-package com.acme.edu.Printers;
+package com.acme.edu.printers;
 
 import java.io.FileWriter;
 import java.io.IOException;

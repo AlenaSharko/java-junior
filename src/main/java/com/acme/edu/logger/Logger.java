@@ -1,12 +1,12 @@
-package com.acme.edu.Loger;
+package com.acme.edu.logger;
 
-import com.acme.edu.Printers.ConsolPrinter;
-import com.acme.edu.Printers.PrintFile;
-import com.acme.edu.Printers.Printer;
-import com.acme.edu.States.State;
-import com.acme.edu.States.StateInt;
-import com.acme.edu.States.StateString;
-import com.acme.edu.States.StateUnBuffered;
+import com.acme.edu.printers.ConsolPrinter;
+import com.acme.edu.printers.PrintFile;
+import com.acme.edu.printers.Printer;
+import com.acme.edu.states.State;
+import com.acme.edu.states.StateInt;
+import com.acme.edu.states.StateString;
+import com.acme.edu.states.StateUnBuffered;
 
 /**
  * log different values
