@@ -56,19 +56,19 @@ public class StateIntTest {
         verify(printer).print("primitive: " + Integer.MAX_VALUE);
 
     }
-//
-//    @Test
-//    public void shouldCallPrinterForPrintMinValueAndCurrentValueWhenMinValueOverfow() {
-//
-//        state.log("" + Integer.MIN_VALUE);
-//        state.log("-10");
-//        state.flush();
-//
-//        verify(printer).print("primitive: " + Integer.MIN_VALUE);
-//        verify(printer).print("primitive: -10");
-//
-//
-//    }
+
+    @Test
+    public void shouldCallPrinterForPrintMinValueAndCurrentValueWhenMinValueOverfow() {
+
+        state.log("" + Integer.MIN_VALUE);
+        state.log("-10");
+        state.flush();
+
+        verify(printer).print("primitive: " + Integer.MIN_VALUE);
+        verify(printer).print("primitive: -10");
+
+
+    }
 
     @Test
     public void shouldCallPrinterForPrintMinValueAndCurrentValueWhenMinValueCome() {

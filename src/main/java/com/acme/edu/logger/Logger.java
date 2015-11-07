@@ -18,14 +18,6 @@ public class Logger {
     private State state;
     private Printer[] printers = {new ConsolPrinter(), new FilePrinter()};
 
-    /**
-     * Constructor
-     */
-    public Logger(State state) {
-        this.state = state;
-    }
-
-
     // region Constants state
     /**
      * Integer state constant for comparation to swich state
@@ -82,6 +74,16 @@ public class Logger {
     public static final String PRIMITIVES_MULTI_MATRIX = "primitives multimatrix: ";
 
     //endregion
+
+    /**
+     * Constructor
+     */
+    public Logger(State state) {
+        this.state = state;
+    }
+
+
+
 
 
     /**
