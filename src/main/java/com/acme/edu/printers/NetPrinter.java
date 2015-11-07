@@ -23,8 +23,7 @@ public class NetPrinter implements Printer {
     public void print(String message) throws PrinterExeption {
 
         try (Socket socket = new Socket("127.0.0.1", 127);
-             DataOutputStream outStream = new DataOutputStream(socket.getOutputStream());
-        ) {
+             DataOutputStream outStream = new DataOutputStream(socket.getOutputStream())) {
             outStream.writeUTF(message);
             inStream = socket.getInputStream();
 
