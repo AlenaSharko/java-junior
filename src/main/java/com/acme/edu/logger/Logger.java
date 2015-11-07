@@ -15,6 +15,34 @@ import com.acme.edu.states.StateUnBuffered;
  */
 public class Logger {
 
+    private State state;
+    private Printer[] printers = {new ConsolPrinter(), new FilePrinter()};
+
+    /**
+     * Constructor
+     */
+    public Logger(State state) {
+        this.state = state;
+    }
+
+
+    // region Constants state
+    /**
+     * Integer state constant for comparation to swich state
+     */
+    public final State INT_STATE = new StateInt(printers);
+
+    /**
+     * String state constant for comparation to swich state
+     */
+    public final State STRING_STATE = new StateString(printers);
+
+    /**
+     * Default state constant for comparation to swich state
+     */
+    public final State UNBUFFERED_STATE = new StateUnBuffered(printers);
+    //endregion
+
     //region Decoration constasts
     /**
      * Decoration for integer and byte values
@@ -55,34 +83,6 @@ public class Logger {
 
     //endregion
 
-    private State state;
-
-    private Printer printer = new ConsolPrinter();
-    private Printer filePrinter = new FilePrinter();
-
-    // region Constants state
-    /**
-     * Integer state constant for comparation to swich state
-     */
-    public final State INT_STATE = new StateInt(printer);
-
-    /**
-     * String state constant for comparation to swich state
-     */
-    public final State STRING_STATE = new StateString(printer);
-
-    /**
-     * Default state constant for comparation to swich state
-     */
-    public final State UNBUFFERED_STATE = new StateUnBuffered(printer);
-    //endregion
-
-    /**
-     * Constructor
-     */
-    public Logger(State state) {
-        this.state = state;
-    }
 
     /**
      * log integer values

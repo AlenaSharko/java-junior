@@ -12,14 +12,13 @@ import com.acme.edu.states.State;
 public class StateInt extends State {
 
     private long intBuf = 0;
-    private boolean bufFlag;
-    private Printer printer;
+    private Printer[] printers;
 
     /**
      * constructor
      */
-    public StateInt(Printer printer) {
-        this.printer = printer;
+    public StateInt(Printer... printers) {
+        this.printers = printers;
     }
 
     /**
@@ -31,20 +30,17 @@ public class StateInt extends State {
         if (message == Integer.MAX_VALUE || message == Integer.MIN_VALUE) {
             flush();
             intBuf = message;
-            bufFlag = true;
             return;
         }
 
         intBuf += message;
 
-        if (intBuf > Integer.MAX_VALUE) {
+        if (intBuf > Integer.MAX_VALUE || intBuf < Integer.MIN_VALUE) {
             intBuf -= message;
             flush();
             intBuf = message;
-            bufFlag = true;
 
         }
-        bufFlag = true;
     }
 
     /**
@@ -52,9 +48,11 @@ public class StateInt extends State {
      */
     @Override
     public void flush() {
-        printer.print(Logger.PRIMITIVE + intBuf);
+        for (Printer currentPrinter : printers) {
+            currentPrinter.print(Logger.PRIMITIVE + intBuf);
+        }
+
         intBuf = 0;
-        bufFlag = false;
     }
 
 

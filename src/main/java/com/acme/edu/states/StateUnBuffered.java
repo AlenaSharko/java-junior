@@ -10,13 +10,13 @@ import com.acme.edu.states.State;
  */
 public class StateUnBuffered extends State {
 
-    private Printer printer;
+    private Printer[] printers;
 
     /**
      * constructor
      */
-    public StateUnBuffered(Printer printer) {
-        this.printer = printer;
+    public StateUnBuffered(Printer... printers) {
+        this.printers = printers;
     }
 
     /**
@@ -25,7 +25,9 @@ public class StateUnBuffered extends State {
      */
     @Override
     public void log(String mes) {
-        printer.print(mes);
+        for (Printer curPrinter : printers) {
+            curPrinter.print(mes);
+        }
     }
 
     /**

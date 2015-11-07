@@ -17,13 +17,13 @@ public class StateString extends State {
     private int countString = 1;
     private String lastSiring;
 
-    private Printer printer;
+    private Printer[] printers;
 
     /**
      * constructor
      */
-    public StateString(Printer printer) {
-        this.printer = printer;
+    public StateString(Printer... printers) {
+        this.printers = printers;
     }
 
     /**
@@ -51,12 +51,15 @@ public class StateString extends State {
      */
     @Override
     public void flush() {
-
-        if (countString == 1) {
-            printer.print(Logger.STR + stringBuf);
-        } else {
-            printer.print(Logger.STR + stringBuf + " " + Logger.X + countString + ")");
+        for (Printer curPrinter : printers) {
+            if (countString == 1) {
+                curPrinter.print(Logger.STR + stringBuf);
+            } else {
+                curPrinter.print(Logger.STR + stringBuf + " " + Logger.X + countString + ")");
+            }
         }
+
+
         countString = 1;
         bufflag = false;
 
