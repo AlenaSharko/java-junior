@@ -3,7 +3,6 @@ package com.acme.edu.logger;
 import com.acme.edu.exeptions.*;
 import com.acme.edu.printers.*;
 import com.acme.edu.states.*;
-
 import java.nio.charset.Charset;
 
 /**
