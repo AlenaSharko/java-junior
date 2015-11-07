@@ -1,5 +1,6 @@
 package com.acme.edu.unit.stateTests;
 
+import com.acme.edu.exeptions.PrinterExeption;
 import com.acme.edu.printers.ConsolPrinter;
 import com.acme.edu.printers.Printer;
 import com.acme.edu.states.StateString;
@@ -26,7 +27,7 @@ public class StateStringTest {
 
 
     @Test
-    public void shouldCallPrinterOneTimeWhenStringCome() {
+    public void shouldCallPrinterOneTimeWhenStringCome() throws PrinterExeption{
 
         state.log("string 1");
         state.flush();
@@ -34,7 +35,7 @@ public class StateStringTest {
     }
 
     @Test
-    public void shouldCallPrinterTwoTimesWhenTwoDifferentStringsCome() {
+    public void shouldCallPrinterTwoTimesWhenTwoDifferentStringsCome()throws PrinterExeption {
 
         state.log("string 1");
         state.log("string 2");
@@ -44,7 +45,7 @@ public class StateStringTest {
     }
 
     @Test
-    public void shouldCallPrinterOneTimesWhenTwoSameStringsCome() {
+    public void shouldCallPrinterOneTimesWhenTwoSameStringsCome() throws PrinterExeption{
 
         state.log("string 1");
         state.log("string 1");

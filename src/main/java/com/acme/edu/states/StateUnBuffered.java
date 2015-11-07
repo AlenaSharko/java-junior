@@ -1,7 +1,7 @@
 package com.acme.edu.states;
 
+import com.acme.edu.exeptions.PrinterExeption;
 import com.acme.edu.printers.Printer;
-import com.acme.edu.states.State;
 
 /**
  * Default state befoe any challenges
@@ -20,11 +20,10 @@ public class StateUnBuffered extends State {
     }
 
     /**
-     *
      * @param mes this paramert will be loged
      */
     @Override
-    public void log(String mes) {
+    public void log(String mes) throws PrinterExeption {
         for (Printer curPrinter : printers) {
             curPrinter.print(mes);
         }
@@ -37,7 +36,6 @@ public class StateUnBuffered extends State {
     public void flush() {
 
     }
-
 
 
 }

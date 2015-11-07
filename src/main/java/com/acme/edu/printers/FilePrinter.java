@@ -1,5 +1,7 @@
 package com.acme.edu.printers;
 
+import com.acme.edu.exeptions.PrinterExeption;
+
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -9,11 +11,13 @@ import java.io.IOException;
 public class FilePrinter implements Printer {
 
     @Override
-    public void print(String message) {
-        try(FileWriter file = new FileWriter("ClientFile.txt");)  {
+    public void print(String message) throws PrinterExeption {
+        try (FileWriter file = new FileWriter("ClientFile.txt")) {
             file.write(message);
         } catch (IOException ex) {
             System.out.println("File Output error");
+            throw new PrinterExeption("Can't write in file", ex);
+
         }
     }
 }

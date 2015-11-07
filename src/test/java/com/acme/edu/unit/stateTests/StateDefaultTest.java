@@ -1,5 +1,7 @@
 package com.acme.edu.unit.stateTests;
 
+import com.acme.edu.exeptions.LoggerExeption;
+import com.acme.edu.exeptions.PrinterExeption;
 import com.acme.edu.printers.ConsolPrinter;
 import com.acme.edu.printers.Printer;
 import com.acme.edu.states.StateUnBuffered;
@@ -26,7 +28,7 @@ public class StateDefaultTest {
 
 
     @Test
-    public void shouldCallPrinterWhenDifferentStatesCome() {
+    public void shouldCallPrinterWhenDifferentStatesCome() throws PrinterExeption{
         Object object = new Object();
         boolean dummy = true;
 

@@ -1,5 +1,7 @@
 package com.acme.edu.logger;
 
+import com.acme.edu.exeptions.LoggerExeption;
+import com.acme.edu.exeptions.PrinterExeption;
 import com.acme.edu.printers.ConsolPrinter;
 import com.acme.edu.printers.FilePrinter;
 import com.acme.edu.printers.Printer;
@@ -83,43 +85,60 @@ public class Logger {
     }
 
 
-
-
-
     /**
      * log integer values
      * with decoration - "primitive: "
      */
-    public void log(int message) {
-        state = state.swichToNewState(INT_STATE);
-        state.log(message + "");
+    public void log(int message) throws LoggerExeption {
+        try {
+            state = state.swichToNewState(INT_STATE);
+            state.log(message + "");
+        } catch (PrinterExeption ex) {
+            new LoggerExeption(ex);
+        }
+
     }
 
     /**
      * log string values
      * with decoration "string: "
      */
-    public void log(String message) {
-        state = state.swichToNewState(STRING_STATE);
-        state.log(message);
+    public void log(String message) throws LoggerExeption {
+        try {
+            state = state.swichToNewState(STRING_STATE);
+            state.log(message);
+        } catch (PrinterExeption ex) {
+            new LoggerExeption(ex);
+        }
+
     }
 
     /**
      * log charecter numbers
      * with decoration - "char: "
      */
-    public void log(char message) {
-        state = state.swichToNewState(UNBUFFERED_STATE);
-        state.log(CHAR + message);
+    public void log(char message) throws LoggerExeption {
+        try {
+            state = state.swichToNewState(UNBUFFERED_STATE);
+            state.log(CHAR + message);
+        } catch (PrinterExeption ex) {
+            new LoggerExeption(ex);
+        }
+
     }
 
     /**
      * print boolean value
      * with decoration - "primitive: "
      */
-    public void log(boolean message) {
-        state = state.swichToNewState(UNBUFFERED_STATE);
-        state.log(PRIMITIVE + message);
+    public void log(boolean message) throws LoggerExeption {
+        try {
+            state = state.swichToNewState(UNBUFFERED_STATE);
+            state.log(PRIMITIVE + message);
+        } catch (PrinterExeption ex) {
+            new LoggerExeption(ex);
+        }
+
     }
 
 
@@ -127,54 +146,75 @@ public class Logger {
      * log any objects
      * with decoration "reference: " and "@"
      */
-    public void log(Object message) {
-        state = state.swichToNewState(UNBUFFERED_STATE);
-        state.log(REFERENCE + AT + message.toString());
+    public void log(Object message) throws LoggerExeption {
+        try {
+            state = state.swichToNewState(UNBUFFERED_STATE);
+            state.log(REFERENCE + AT + message.toString());
+        } catch (PrinterExeption ex) {
+            new LoggerExeption(ex);
+        }
+
     }
 
     /**
      * log matrix size 2x2 in the console
      * with decoration "primitives matrix:"
      */
-    public void log(int[][] matrix) {
+    public void log(int[][] matrix) throws LoggerExeption {
         StringBuilder array = new StringBuilder(" {\n");
         for (int[] xi : matrix) {
             array.append(makeOneString(xi)).append("\n");
         }
         array.append("}");
-        state = state.swichToNewState(UNBUFFERED_STATE);
-        state.log(PRIMITIVES_MATRIX + array);
+
+        try {
+            state = state.swichToNewState(UNBUFFERED_STATE);
+            state.log(PRIMITIVES_MATRIX + array);
+        } catch (PrinterExeption ex) {
+            new LoggerExeption(ex);
+        }
+
     }
 
     /**
      * log any string values in the console
      * with decoration "primitives array: "
      */
-    public void log(String... strings) {
+    public void log(String... strings) throws LoggerExeption {
         StringBuilder array = new StringBuilder();
         for (String string : strings) {
             array.append(string).append("\n");
         }
-        state = state.swichToNewState(UNBUFFERED_STATE);
-        state.log(PRIMITIVE_ARRAY + array);
+        try {
+            state = state.swichToNewState(UNBUFFERED_STATE);
+            state.log(PRIMITIVE_ARRAY + array);
+        } catch (PrinterExeption ex) {
+            new LoggerExeption(ex);
+        }
+
     }
 
     /**
      * log integer array in the console
      * with decoration "primitives array: "
      */
-    public void log(int... nums) {
+    public void log(int... nums) throws LoggerExeption {
         StringBuilder array = new StringBuilder("");
         array.append(makeOneString(nums));
-        state = state.swichToNewState(UNBUFFERED_STATE);
-        state.log(PRIMITIVE_ARRAY + array);
+        try {
+            state = state.swichToNewState(UNBUFFERED_STATE);
+            state.log(PRIMITIVE_ARRAY + array);
+        } catch (PrinterExeption ex) {
+            new LoggerExeption(ex);
+        }
+
     }
 
     /**
      * log multimatrix - array of cubes in the console
      * with decoration "primitives multimatrix: "
      */
-    public void log(int[][][][] array) {
+    public void log(int[][][][] array) throws LoggerExeption {
         StringBuilder multiMatr = new StringBuilder("{\n");
         for (int[][][] cube : array) {
             multiMatr.append("{\n");
@@ -192,15 +232,25 @@ public class Logger {
             multiMatr.append("}\n");
         }
         multiMatr.append("}");
-        state = state.swichToNewState(UNBUFFERED_STATE);
-        state.log(PRIMITIVES_MULTI_MATRIX + multiMatr);
+        try {
+            state = state.swichToNewState(UNBUFFERED_STATE);
+            state.log(PRIMITIVES_MULTI_MATRIX + multiMatr);
+        } catch (PrinterExeption ex) {
+            new LoggerExeption(ex);
+        }
+
     }
 
     /**
      * log integer sum of last string value
      */
-    public void close() {
-        state.flush();
+    public void close() throws LoggerExeption {
+        try {
+            state.flush();
+        } catch (PrinterExeption ex) {
+            new LoggerExeption(ex);
+        }
+
     }
 
     private static String makeOneString(int[] arr) {

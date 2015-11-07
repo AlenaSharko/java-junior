@@ -1,6 +1,7 @@
 package com.acme.edu.iteration01;
 
 import com.acme.edu.*;
+import com.acme.edu.exeptions.LoggerExeption;
 import com.acme.edu.logger.Logger;
 import com.acme.edu.printers.*;
 import com.acme.edu.states.*;
@@ -20,7 +21,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
 
     //region given
     @Before
-    public void setUpSystemOut() throws IOException {
+    public void setUpSystemOut() throws LoggerExeption {
 
         resetOut();
         captureSysout();
@@ -35,7 +36,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     }
 
     @Test
-    public void shouldLogInteger() throws IOException {
+    public void shouldLogInteger() throws LoggerExeption {
         //region when
 
         logger.log(1);
@@ -68,7 +69,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
 //    }
 
     @Test
-    public void shouldLogChar() throws IOException {
+    public void shouldLogChar() throws LoggerExeption {
         //region when
         logger.log('a');
         logger.log('b');
@@ -82,7 +83,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     }
 
     @Test
-    public void shouldLogBoolean() throws IOException {
+    public void shouldLogBoolean() throws LoggerExeption {
         //region when
         logger.log(true);
         logger.log(false);
@@ -97,7 +98,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
 
 
     @Test
-    public void shouldLogString() throws IOException {
+    public void shouldLogString() throws LoggerExeption {
         //region when
         logger.log("test string 1");
         logger.log("other str 0");
@@ -113,7 +114,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
 
 
     @Test
-    public void shouldLogReference() throws IOException {
+    public void shouldLogReference() throws LoggerExeption {
         //region when
         logger.log(new Object());
         //endregion

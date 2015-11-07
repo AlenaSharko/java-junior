@@ -1,8 +1,8 @@
 package com.acme.edu.states;
 
+import com.acme.edu.exeptions.PrinterExeption;
 import com.acme.edu.logger.Logger;
 import com.acme.edu.printers.Printer;
-import com.acme.edu.states.State;
 
 /**
  * log string values
@@ -27,11 +27,10 @@ public class StateString extends State {
     }
 
     /**
-     *
      * @param mes this paramert will be loged
      */
     @Override
-    public void log(String mes) {
+    public void log(String mes) throws PrinterExeption {
         if (bufflag) {
             if (mes.equals(lastSiring)) {
                 countString++;
@@ -50,7 +49,7 @@ public class StateString extends State {
      * drop prepared stirng to print
      */
     @Override
-    public void flush() {
+    public void flush() throws PrinterExeption {
         for (Printer curPrinter : printers) {
             if (countString == 1) {
                 curPrinter.print(Logger.STR + stringBuf);

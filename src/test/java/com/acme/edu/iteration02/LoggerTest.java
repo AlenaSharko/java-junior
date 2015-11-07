@@ -1,12 +1,9 @@
 package com.acme.edu.iteration02;
 
-import com.acme.edu.*;
+import com.acme.edu.SysoutCaptureAndAssertionAbility;
+import com.acme.edu.exeptions.LoggerExeption;
 import com.acme.edu.logger.Logger;
 import com.acme.edu.printers.ConsolPrinter;
-import com.acme.edu.printers.FilePrinter;
-import com.acme.edu.printers.NetPrinter;
-import com.acme.edu.printers.Printer;
-import com.acme.edu.states.State;
 import com.acme.edu.states.StateUnBuffered;
 import org.junit.After;
 import org.junit.Before;
@@ -14,19 +11,19 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
 
 @Ignore
 public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     private Logger logger;
+
     //region given
     @Before
-    public void setUpSystemOut() throws IOException {
+    public void setUpSystemOut() throws LoggerExeption {
         resetOut();
         captureSysout();
         logger = new Logger(new StateUnBuffered(new ConsolPrinter()));
     }
+
     //endregion
     @After
     public void tearDown() {
@@ -35,7 +32,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
 
 
     @Test
-    public void shouldLogSequentIntegersAsSum() throws IOException {
+    public void shouldLogSequentIntegersAsSum() throws LoggerExeption {
         //region when
         logger.log("str 1");
         logger.log(1);
@@ -47,16 +44,16 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
 
         //region then
         assertSysoutEquals(
-            "string: str 1\n" +
-                    "primitive: " + "3\n" +
-            "string: str 2\n" +
-                    "primitive: " + "0\n"
+                "string: str 1\n" +
+                        "primitive: " + "3\n" +
+                        "string: str 2\n" +
+                        "primitive: " + "0\n"
         );
         //endregion
     }
 
     @Test
-    public void shouldLogCorrectlyIntegerOverflowWhenSequentIntegers() {
+    public void shouldLogCorrectlyIntegerOverflowWhenSequentIntegers() throws LoggerExeption {
         //region when
         logger.log("str 1");
         logger.log(10);
@@ -68,11 +65,11 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
 
         //region then
         assertSysoutEquals(
-            "string: str 1\n" +
-            "primitive: 10\n" +
-            "primitive: " + Integer.MAX_VALUE + "\n" +
-            "string: str 2\n" +
-            "primitive: 0\n"
+                "string: str 1\n" +
+                        "primitive: 10\n" +
+                        "primitive: " + Integer.MAX_VALUE + "\n" +
+                        "string: str 2\n" +
+                        "primitive: 0\n"
         );
         //endregion
     }
@@ -101,7 +98,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
 //    }
 
     @Test
-    public void shouldLogSameSubsequentStringsWithoutRepeat() throws IOException {
+    public void shouldLogSameSubsequentStringsWithoutRepeat() throws LoggerExeption {
         //region when
         logger.log("str 1");
         logger.log("str 2");
@@ -116,11 +113,11 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
 
         //region then
         assertSysoutEquals(
-            "string: str 1\n" +
-            "string: str 2 (x2)\n" +
-            "primitive: 0\n" +
-            "string: str 2\n" +
-            "string: str 3 (x3)\n"
+                "string: str 1\n" +
+                        "string: str 2 (x2)\n" +
+                        "primitive: 0\n" +
+                        "string: str 2\n" +
+                        "string: str 3 (x3)\n"
         );
         //endregion
     }

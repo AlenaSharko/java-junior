@@ -1,9 +1,10 @@
 package com.acme.edu.printers;
 
+
 /**
  * Print message in remote file
  */
-public class NetPrinter implements Printer{
+public class NetPrinter implements Printer {
 
 
     @Override
