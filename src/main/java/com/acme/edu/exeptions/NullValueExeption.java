@@ -1,10 +1,9 @@
 package com.acme.edu.exeptions;
 
 /**
- * Called when some problems with printers
+ * Called whrn we have null value
  */
-public class PrinterExeption extends Exception {
-
+public class NullValueExeption extends Exception {
     private String clarification;
     private Throwable reason;
 
@@ -13,7 +12,7 @@ public class PrinterExeption extends Exception {
      *
      * @param clarification explains why was exeption
      */
-    public PrinterExeption(String clarification) {
+    public NullValueExeption(String clarification) {
         this.clarification = clarification;
     }
 
@@ -23,7 +22,7 @@ public class PrinterExeption extends Exception {
      * @param clarification explains why was exeption
      * @param reason        extpains real caurse of exeption
      */
-    public PrinterExeption(String clarification, Throwable reason) {
+    public NullValueExeption(String clarification, Throwable reason) {
         this.clarification = clarification;
         this.reason = reason;
     }
@@ -32,7 +31,7 @@ public class PrinterExeption extends Exception {
      * Constructor when we know reason and dont want tell something about exeption
      *
      */
-    public PrinterExeption(Throwable reason) {
+    public NullValueExeption(Throwable reason) {
         this.reason = reason;
     }
 }

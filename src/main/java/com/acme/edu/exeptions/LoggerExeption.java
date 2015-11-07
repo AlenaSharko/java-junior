@@ -31,7 +31,6 @@ public class LoggerExeption extends Exception {
     /**
      * Constructor when we know reason and dont want tell something about exeption
      *
-     * @param reason
      */
     public LoggerExeption(Throwable reason) {
         this.reason = reason;
