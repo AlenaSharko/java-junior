@@ -28,7 +28,6 @@ public class NetPrinter implements Printer {
             inStream = socket.getInputStream();
 
         } catch (IOException e) {
-            e.printStackTrace();
             new PrinterExeption("cant send message to server");
         }
 
