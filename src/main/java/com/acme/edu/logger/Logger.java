@@ -4,6 +4,8 @@ import com.acme.edu.exeptions.*;
 import com.acme.edu.printers.*;
 import com.acme.edu.states.*;
 
+import java.nio.charset.Charset;
+
 /**
  * log different values
  *
@@ -12,7 +14,7 @@ import com.acme.edu.states.*;
 public class Logger {
 
     private State state;
-    private Printer[] printers = {new ConsolPrinter(), new FilePrinter()};
+    private Printer[] printers = {new ConsolPrinter(), new FilePrinter("ClientFile", Charset.defaultCharset())};
 
     // region Constants state
     /**

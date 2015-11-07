@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 
 /**
  * Test for writing in test file
@@ -22,9 +23,8 @@ public class FilePrinterTest {
 
     @Before
     public void setUp() throws PrinterExeption {
-        testFile = new File("ClientFile.txt");
-        testFile.delete();
-        printer = new FilePrinter();
+        testFile = new File("testFile.txt");
+        printer = new FilePrinter(testFile.getPath(), Charset.defaultCharset());
     }
 
     @After
