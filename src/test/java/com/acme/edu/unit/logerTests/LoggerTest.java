@@ -6,7 +6,6 @@ import com.acme.edu.logger.Logger;
 import com.acme.edu.states.State;
 import org.junit.Before;
 import org.junit.Test;
-
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 
@@ -123,5 +122,19 @@ public class LoggerTest {
         logger.log(arr);
         verify(state).log("primitives multimatrix: {" + Logger.SEP + "{" + Logger.SEP + "{" + Logger.SEP + "{" + Logger.SEP +
                 "1" + Logger.SEP + "}" + Logger.SEP + "}" + Logger.SEP + "}" + Logger.SEP + "}");
+    }
+
+    @Test(expected = LoggerExeption.class)
+    public void shouldNotLogWhenStringValueCome() throws PrinterExeption, LoggerExeption {
+        when(state.swichToNewState(any())).thenReturn(state);
+        logger = new Logger(state);
+        logger.log((String) null);
+    }
+
+    @Test(expected = LoggerExeption.class)
+    public void shouldNotLogwhenIntValueCome() throws PrinterExeption, LoggerExeption {
+        when(state.swichToNewState(any())).thenReturn(state);
+        logger = new Logger(state);
+        logger.log((Object) null);
     }
 }

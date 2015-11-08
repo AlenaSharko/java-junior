@@ -102,11 +102,6 @@ public class Logger {
      */
     public void log(int message) throws LoggerExeption {
         try {
-            checkingForNull(message);
-        }catch (NullValueExeption ex) {
-            throw new LoggerExeption(NULL , ex);
-        }
-        try {
             state = state.swichToNewState(INT_STATE);
             state.log(message + "");
         } catch (PrinterExeption ex) {
@@ -138,11 +133,7 @@ public class Logger {
      * with decoration - "char: "
      */
     public void log(char message) throws LoggerExeption {
-        try {
-            checkingForNull(message);
-        }catch (NullValueExeption ex) {
-            throw new LoggerExeption(NULL , ex);
-        }
+
         try {
             state = state.swichToNewState(UNBUFFERED_STATE);
             state.log(CHAR + message);
@@ -157,11 +148,7 @@ public class Logger {
      * with decoration - "primitive: "
      */
     public void log(boolean message) throws LoggerExeption {
-        try {
-            checkingForNull(message);
-        }catch (NullValueExeption ex) {
-            throw new LoggerExeption(NULL , ex);
-        }
+
         try {
             state = state.swichToNewState(UNBUFFERED_STATE);
             state.log(PRIMITIVE + message);
@@ -196,11 +183,7 @@ public class Logger {
      * with decoration "primitives matrix:"
      */
     public void log(int[][] matrix) throws LoggerExeption {
-        try {
-            checkingForNull(matrix);
-        }catch (NullValueExeption ex) {
-            throw new LoggerExeption(NULL , ex);
-        }
+
         StringBuilder array = new StringBuilder(" {" + SEP);
         for (int[] xi : matrix) {
             array.append(makeOneString(xi)).append(SEP);
@@ -220,11 +203,7 @@ public class Logger {
      * with decoration "primitives array: "
      */
     public void log(String... strings) throws LoggerExeption {
-        try {
-            checkingForNull(strings);
-        }catch (NullValueExeption ex) {
-           throw  new LoggerExeption(NULL , ex);
-        }
+
         StringBuilder array = new StringBuilder();
         for (String string : strings) {
             array.append(string).append("\n");
@@ -242,11 +221,7 @@ public class Logger {
      * with decoration "primitives array: "
      */
     public void log(int... nums) throws LoggerExeption {
-        try {
-            checkingForNull(nums);
-        }catch (NullValueExeption ex) {
-            throw new LoggerExeption(NULL , ex);
-        }
+
         StringBuilder array = new StringBuilder("");
         array.append(makeOneString(nums));
         try {
@@ -263,11 +238,7 @@ public class Logger {
      * with decoration "primitives multimatrix: "
      */
     public void log(int[][][][] array) throws LoggerExeption {
-        try {
-            checkingForNull(array);
-        }catch (NullValueExeption ex) {
-            throw new LoggerExeption(NULL , ex);
-        }
+
         StringBuilder multiMatr = new StringBuilder("{" + SEP);
         for (int[][][] cube : array) {
             multiMatr.append("{").append(SEP);
