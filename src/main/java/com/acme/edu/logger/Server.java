@@ -16,7 +16,12 @@ public class Server {
     Charset charSet;
     ObjectOutputStream objStream;
     Socket client;
+    private static final String BED = "<<Error>>";
+    private static final String GOOD = "<<Error>>";
 
+    /**
+     * Constructor which allow set port and charset
+     */
     public Server(int port, Charset charSet) {
         this.port = port;
         this.charSet = charSet;
@@ -48,13 +53,13 @@ public class Server {
 
     private void notificationIfAllright(Socket socket) throws IOException {
         objStream = new ObjectOutputStream(socket.getOutputStream());
-        objStream.writeUTF("<<Normal Working>>");
+        objStream.writeUTF(GOOD);
         objStream.close();
     }
 
     private void notificationIfAllbed(Socket socket, Exception ex) throws IOException {
         objStream = new ObjectOutputStream(socket.getOutputStream());
-        objStream.writeUTF("<<Error>>");
+        objStream.writeUTF(BED);
         objStream.writeObject(ex);
         objStream.close();
     }

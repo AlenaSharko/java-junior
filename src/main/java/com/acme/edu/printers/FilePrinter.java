@@ -33,7 +33,6 @@ public class FilePrinter implements Printer {
              OutputStreamWriter writer = new OutputStreamWriter(file, charSet)) {
             writer.write(message);
         } catch (IOException ex) {
-            System.out.println("File Output error");
             throw new PrinterExeption("Can't write in file", ex);
 
         }

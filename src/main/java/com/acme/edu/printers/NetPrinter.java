@@ -16,6 +16,8 @@ public class NetPrinter implements Printer {
     private Charset charSet;
     private StringBuilder buffer = new StringBuilder();
     private int bufferCounter = 0;
+    private static final String BED = "<<Error>>";
+
 
     /**
      * Constructon which allow set charset port and ip addderss
@@ -56,7 +58,7 @@ public class NetPrinter implements Printer {
     private void chekServer(Socket socket) throws PrinterExeption {
         try(ObjectInputStream inStream = new ObjectInputStream(socket.getInputStream())){
             while (!inStream.readUTF().isEmpty()){
-                if(inStream.readUTF().equals("<<Error>>")) {
+                if(inStream.readUTF().equals(BED)) {
                     throw (PrinterExeption) inStream.readObject();
                 }
             }
