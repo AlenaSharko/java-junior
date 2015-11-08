@@ -118,19 +118,16 @@ public class StateIntTest {
     }
 
     @Test
-    public void shouldntChengeStatw() throws PrinterExeption {
+    public void shouldntChengeState() throws PrinterExeption {
 
         assertEquals(state, state.swichToNewState(state));
 
     }
 
-//    @Test
-//    public void shouldSwichToStringState() throws PrinterExeption{
-//        State stete1 = mock(StateString.class);
-//
-//        when(state.swichToNewState(any())).thenReturn(stete1);
-//
-//        assertEquals(stete1,state.swichToNewState(state));
-//    }
-
+    @Test
+    public void shouldSwichToStringState() throws PrinterExeption {
+        State state = mock(StateString.class);
+        when(state.swichToNewState(any())).thenReturn(state);
+        assertEquals(state, this.state.swichToNewState(state));
+    }
 }
