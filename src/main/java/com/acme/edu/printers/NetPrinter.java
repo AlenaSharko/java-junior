@@ -5,16 +5,12 @@ import com.acme.edu.exeptions.PrinterExeption;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.Socket;
 
 /**
  * Print message in remote file
  */
 public class NetPrinter implements Printer {
-
-    private InputStream inStream;
-
 
     /**
      * Send message to server
@@ -25,10 +21,10 @@ public class NetPrinter implements Printer {
         try (Socket socket = new Socket("127.0.0.1", 127);
              DataOutputStream outStream = new DataOutputStream(socket.getOutputStream())) {
             outStream.writeUTF(message);
-            inStream = socket.getInputStream();
+            socket.getInputStream();
 
         } catch (IOException e) {
-            new PrinterExeption("cant send message to server");
+            throw new PrinterExeption("cant send message to server");
         }
 
     }

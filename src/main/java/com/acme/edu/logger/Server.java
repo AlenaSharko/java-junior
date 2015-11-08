@@ -24,7 +24,7 @@ public class Server {
 
             DataInputStream stream = new DataInputStream(client.getInputStream());
             String readLine;
-            while ((readLine = stream.readUTF()) != null) {
+            while (!(readLine = stream.readUTF()).isEmpty()) {
                 try(FileWriter file = new FileWriter("ServerFile")) {
 
                     file.write(readLine);

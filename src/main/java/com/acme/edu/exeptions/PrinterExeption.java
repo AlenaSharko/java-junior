@@ -3,10 +3,7 @@ package com.acme.edu.exeptions;
 /**
  * Called when some problems with printers
  */
-public class PrinterExeption extends Exception {
-
-    private String clarification;
-    private Throwable reason;
+public class PrinterExeption extends OverallExeption {
 
     /**
      * Constructor when we dont want tee reason
@@ -14,7 +11,7 @@ public class PrinterExeption extends Exception {
      * @param clarification explains why was exeption
      */
     public PrinterExeption(String clarification) {
-        this.clarification = clarification;
+        super(clarification);
     }
 
     /**
@@ -24,8 +21,7 @@ public class PrinterExeption extends Exception {
      * @param reason        extpains real caurse of exeption
      */
     public PrinterExeption(String clarification, Throwable reason) {
-        this.clarification = clarification;
-        this.reason = reason;
+        super(clarification,reason);
     }
 
     /**
@@ -33,6 +29,6 @@ public class PrinterExeption extends Exception {
      *
      */
     public PrinterExeption(Throwable reason) {
-        this.reason = reason;
+        super(reason);
     }
 }

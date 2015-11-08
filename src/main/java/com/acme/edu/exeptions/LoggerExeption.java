@@ -3,18 +3,15 @@ package com.acme.edu.exeptions;
 /**
  * will contains all exeprion in logger
  */
-public class LoggerExeption extends Exception {
-
-    private String clarification;
-    private Throwable reason;
-
+public class LoggerExeption extends OverallExeption {
+    
     /**
      * Constructor when we dont want tee reason
      *
      * @param clarification explains why was exeption
      */
     public LoggerExeption(String clarification) {
-        this.clarification = clarification;
+        super(clarification);
     }
 
     /**
@@ -24,8 +21,7 @@ public class LoggerExeption extends Exception {
      * @param reason        extpains real caurse of exeption
      */
     public LoggerExeption(String clarification, Throwable reason) {
-        this.clarification = clarification;
-        this.reason = reason;
+        super(clarification, reason);
     }
 
     /**
@@ -33,6 +29,6 @@ public class LoggerExeption extends Exception {
      *
      */
     public LoggerExeption(Throwable reason) {
-        this.reason = reason;
+        super(reason);
     }
 }

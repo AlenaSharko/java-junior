@@ -1,17 +1,21 @@
 package com.acme.edu.exeptions;
 
 /**
- * Called whrn we have null value
+ * Abstact class for all exeptions
  */
-public class NullValueExeption extends OverallExeption {
+public class OverallExeption extends Exception {
+
+
+    private String clarification;
+    private Throwable reason;
 
     /**
      * Constructor when we dont want tee reason
      *
      * @param clarification explains why was exeption
      */
-    public NullValueExeption(String clarification) {
-        super(clarification);
+    public OverallExeption(String clarification) {
+        this.clarification = clarification;
     }
 
     /**
@@ -20,15 +24,17 @@ public class NullValueExeption extends OverallExeption {
      * @param clarification explains why was exeption
      * @param reason        extpains real caurse of exeption
      */
-    public NullValueExeption(String clarification, Throwable reason) {
-        super(clarification, reason);
+    public OverallExeption(String clarification, Throwable reason) {
+        this.clarification = clarification;
+        this.reason = reason;
     }
 
     /**
      * Constructor when we know reason and dont want tell something about exeption
      *
      */
-    public NullValueExeption(Throwable reason) {
-        super(reason);
+    public OverallExeption(Throwable reason) {
+        this.reason = reason;
     }
+
 }
