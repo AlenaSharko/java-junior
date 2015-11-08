@@ -10,6 +10,13 @@ public class OverallExeption extends Exception {
     private Throwable reason;
 
     /**
+     * Constructor withoutparametrs
+     */
+    public OverallExeption() {
+
+    }
+
+    /**
      * Constructor when we dont want tee reason
      *
      * @param clarification explains why was exeption

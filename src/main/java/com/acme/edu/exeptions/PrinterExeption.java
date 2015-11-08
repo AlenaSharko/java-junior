@@ -6,6 +6,13 @@ package com.acme.edu.exeptions;
 public class PrinterExeption extends OverallExeption {
 
     /**
+     * Constructor withoutparametrs
+     */
+    public PrinterExeption() {
+
+    }
+
+    /**
      * Constructor when we dont want tee reason
      *
      * @param clarification explains why was exeption

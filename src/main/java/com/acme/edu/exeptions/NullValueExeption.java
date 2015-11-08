@@ -6,6 +6,12 @@ package com.acme.edu.exeptions;
 public class NullValueExeption extends OverallExeption {
 
     /**
+     * Constructor withoutparametrs
+     */
+    public NullValueExeption() {
+
+    }
+    /**
      * Constructor when we dont want tee reason
      *
      * @param clarification explains why was exeption

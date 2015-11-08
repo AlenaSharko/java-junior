@@ -1,39 +1,65 @@
 package com.acme.edu.logger;
 
-import java.io.DataInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
+import com.acme.edu.exeptions.PrinterExeption;
+
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.charset.Charset;
 
 /**
  * Accept message and print in file
  */
 public class Server {
 
+    private int port;
+    Charset charSet;
+    ObjectOutputStream objStream;
+    Socket client;
+
+    public Server(int port, Charset charSet) {
+        this.port = port;
+        this.charSet = charSet;
+    }
+
     /**
-     * compound with client
+     * Start server working
+     * Print message on file
      */
-    public static void main(String[] args) {
+    public void start() throws PrinterExeption , IOException {
+        try (ServerSocket server = new ServerSocket(port)) {
+            client = server.accept();
 
-
-        try {
-            ServerSocket socket = new ServerSocket(127);
-
-            Socket client = socket.accept();
-
-            DataInputStream stream = new DataInputStream(client.getInputStream());
-            String readLine;
-            while (!(readLine = stream.readUTF()).isEmpty()) {
-                try(FileWriter file = new FileWriter("ServerFile")) {
-
-                    file.write(readLine);
+            DataInputStream inStream = new DataInputStream(client.getInputStream());
+            while (!(inStream.readUTF()).isEmpty()) {
+                try (BufferedWriter outStream = new BufferedWriter
+                        (new OutputStreamWriter(client.getOutputStream(), charSet))) {
+                    outStream.write(inStream.readUTF());
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+
+            notificationIfAllright(client);
+
+
+        } catch (IOException ex) {
+            notificationIfAllbed(client, ex);
         }
     }
+
+    private void notificationIfAllright(Socket socket) throws IOException {
+        objStream = new ObjectOutputStream(socket.getOutputStream());
+        objStream.writeUTF("<<Normal Working>>");
+        objStream.close();
+    }
+
+    private void notificationIfAllbed(Socket socket, Exception ex) throws IOException {
+        objStream = new ObjectOutputStream(socket.getOutputStream());
+        objStream.writeUTF("<<Error>>");
+        objStream.writeObject(ex);
+        objStream.close();
+    }
+
 }
+
 
 

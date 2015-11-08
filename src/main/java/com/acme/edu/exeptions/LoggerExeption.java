@@ -4,6 +4,13 @@ package com.acme.edu.exeptions;
  * will contains all exeprion in logger
  */
 public class LoggerExeption extends OverallExeption {
+
+    /**
+     * Constructor withoutparametrs
+     */
+    public LoggerExeption() {
+
+    }
     
     /**
      * Constructor when we dont want tee reason
