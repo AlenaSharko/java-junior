@@ -13,7 +13,7 @@ import java.nio.charset.Charset;
 public class Logger {
 
     private State state;
-    private Printer[] printers = {new ConsolPrinter(),
+    private static Printer[] printers = {new ConsolPrinter(),
             new FilePrinter("ClientFile", Charset.defaultCharset()),
             new NetPrinter("127.0.0.1", 127,Charset.defaultCharset(),50)};
 
@@ -21,17 +21,17 @@ public class Logger {
     /**
      * Integer state constant for comparation to swich state
      */
-    public final State INT_STATE = new StateInt(printers);
+    public static final State INT_STATE = new StateInt(printers);
 
     /**
      * String state constant for comparation to swich state
      */
-    public final State STRING_STATE = new StateString(printers);
+    public static final State STRING_STATE = new StateString(printers);
 
     /**
      * Default state constant for comparation to swich state
      */
-    public final State UNBUFFERED_STATE = new StateUnBuffered(printers);
+    public static final State UNBUFFERED_STATE = new StateUnBuffered(printers);
     //endregion
 
     //region Decoration constasts

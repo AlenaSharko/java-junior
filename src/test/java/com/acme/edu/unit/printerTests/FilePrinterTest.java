@@ -24,7 +24,6 @@ public class FilePrinterTest {
     @Before
     public void setUp() throws PrinterExeption {
         testFile = new File("testFile.txt");
-
     }
 
     @After

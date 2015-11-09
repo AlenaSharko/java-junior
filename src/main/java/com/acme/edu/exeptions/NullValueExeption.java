@@ -3,14 +3,8 @@ package com.acme.edu.exeptions;
 /**
  * Called whrn we have null value
  */
-public class NullValueExeption extends OverallExeption {
+public class NullValueExeption extends Exception {
 
-    /**
-     * Constructor withoutparametrs
-     */
-    public NullValueExeption() {
-
-    }
     /**
      * Constructor when we dont want tee reason
      *

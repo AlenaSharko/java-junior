@@ -56,7 +56,7 @@ public class NetPrinter implements Printer {
             outStream.write(buffer.toString());
             chekServer(socket);
         } catch (IOException e) {
-            throw new PrinterExeption("cant send message to server");
+            throw new PrinterExeption("cant send message to server", e);
         }
     }
 

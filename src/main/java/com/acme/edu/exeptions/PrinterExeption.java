@@ -3,14 +3,7 @@ package com.acme.edu.exeptions;
 /**
  * Called when some problems with printers
  */
-public class PrinterExeption extends OverallExeption {
-
-    /**
-     * Constructor withoutparametrs
-     */
-    public PrinterExeption() {
-
-    }
+public class PrinterExeption extends Exception {
 
     /**
      * Constructor when we dont want tee reason

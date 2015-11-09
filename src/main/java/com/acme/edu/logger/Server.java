@@ -17,7 +17,7 @@ public class Server {
     ObjectOutputStream objStream;
     Socket client;
     private static final String BED = "<<Error>>";
-    private static final String GOOD = "<<Error>>";
+    private static final String GOOD = "<<OK>>";
 
     /**
      * Constructor which allow set port and charset
