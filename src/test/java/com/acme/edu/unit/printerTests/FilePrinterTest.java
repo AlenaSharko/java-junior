@@ -42,9 +42,18 @@ public class FilePrinterTest {
 
     @Test(expected = PrinterExeption.class)
 
-    public void shouldntPrintMessageInFile() throws PrinterExeption, IOException {
+    public void shouldntPrintMessageInFileWhenWrongFileName() throws PrinterExeption, IOException {
         printer = new FilePrinter("///invalid file path///", Charset.defaultCharset());
         printer.print("test string");
     }
+
+//    @Test(expected = PrinterExeption.class)
+//
+//    public void shouldntPrintMessageInFileWhenWrongFileCharSet() throws PrinterExeption, IOException {
+//        Charset charset = "UTF";
+//        printer = new FilePrinter("testFile.txt", charset);
+//        printer.print("test string");
+//    }
+
 
 }

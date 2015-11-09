@@ -45,7 +45,6 @@ public class Server {
 
             notificationIfAllright(client);
 
-
         } catch (IOException ex) {
             notificationIfAllbed(client, ex);
         }

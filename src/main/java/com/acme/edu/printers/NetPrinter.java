@@ -5,6 +5,8 @@ import com.acme.edu.logger.Logger;
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.Charset;
+import java.util.*;
+
 
 /**
  * Print message in remote file
@@ -12,20 +14,20 @@ import java.nio.charset.Charset;
 public class NetPrinter implements Printer {
 
     private String addressIP;
+    private int bufferSize;
     private int port;
     private Charset charSet;
-    private StringBuilder buffer = new StringBuilder();
-    private int bufferCounter = 0;
+    private List<String> buffer = new LinkedList<>();
     private static final String BED = "<<Error>>";
-
 
     /**
      * Constructon which allow set charset port and ip addderss
      */
-    public NetPrinter(String addressIP, int port, Charset charSet) {
+    public NetPrinter(String addressIP, int port, Charset charSet, int bufferSize) {
         this.addressIP = addressIP;
         this.port = port;
         this.charSet = charSet;
+        this.bufferSize = bufferSize;
     }
 
     /**
@@ -33,27 +35,32 @@ public class NetPrinter implements Printer {
      */
     @Override
     public void print(String message) throws PrinterExeption {
-        if (bufferCounter <= 50) {
-            buffer.append(message).append(Logger.SEP);
-            bufferCounter++;
+        if (buffer.size() <= bufferSize) {
+            buffer.add(message + Logger.SEP);
         } else {
             flush();
-            buffer.append(message).append(Logger.SEP);
+            buffer.add(message + Logger.SEP);
         }
-
-
     }
 
     private void flush() throws PrinterExeption {
         try (Socket socket = new Socket(addressIP, port);
              BufferedWriter outStream = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), charSet))) {
+            Collections.sort(buffer, (o1, o2) -> {
+                if(o1.contains("ERROR")){
+                    return 1;
+                } else {
+                    return -1;
+                }
+            });
             outStream.write(buffer.toString());
-            bufferCounter = 0;
             chekServer(socket);
         } catch (IOException e) {
             throw new PrinterExeption("cant send message to server");
         }
     }
+
+
 
     private void chekServer(Socket socket) throws PrinterExeption {
         try(ObjectInputStream inStream = new ObjectInputStream(socket.getInputStream())){
