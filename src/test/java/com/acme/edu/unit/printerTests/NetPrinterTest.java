@@ -33,7 +33,10 @@ public class NetPrinterTest {
 
     @After
     public void tearDown() {
-        server.stop();
+        if(server != null) {
+            server.stop();
+        }
+
     }
 
     @Test
