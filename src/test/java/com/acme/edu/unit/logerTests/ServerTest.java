@@ -21,8 +21,7 @@ import static org.mockito.Mockito.*;
  */
 
 public class ServerTest {
-
-/*
+    /*
     Server server;
     private ByteArrayOutputStream outputStream;
     private ByteArrayInputStream inputStream;
@@ -30,28 +29,19 @@ public class ServerTest {
 
     @Before
     public void setUpServer() throws Exception {
-        ServerSocket stubServerSocket = mock(ServerSocket.class);
-        Socket socket = mock(Socket.class);
+        ServerSocket server = mock(ServerSocket.class);
+        Socket client = mock(Socket.class);
 
         printer = mock(FilePrinter.class);
 
         outputStream = new ByteArrayOutputStream();
         inputStream = new ByteArrayInputStream("test message".getBytes());
 
-        when(stubServerSocket.accept()).thenReturn(socket).thenReturn(null);
-        when(socket.getOutputStream()).thenReturn(outputStream);
-        when(socket.getInputStream()).thenReturn(inputStream);
+        when(server.accept()).thenReturn(client).thenReturn(null);
+        when(client.getOutputStream()).thenReturn(outputStream);
+        when(client.getInputStream()).thenReturn(inputStream);
 
-        server = new Server(4444, Charset.defaultCharset()) {
-
-            private ServerSocket createSocket() throws IOException {
-                return stubServerSocket;
-            }
-
-            private FilePrinter createFilePrinter() throws PrinterException {
-                return printer;
-            }
-        };
+        this.server = new Server(4444, Charset.defaultCharset());
     }
 
     @After
@@ -65,11 +55,10 @@ public class ServerTest {
         try {
             server.start();
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         verify(printer).print("test message");
     }
-
 */
 }
 
