@@ -15,7 +15,7 @@ public class Logger {
     private State state;
     private static Printer[] printers = {new ConsolPrinter(),
             new FilePrinter("ClientFile", Charset.defaultCharset()),
-            new NetPrinter("127.0.0.1", 127,Charset.defaultCharset(),50)};
+            new NetPrinter("127.0.0.1", 3714,Charset.defaultCharset(),50)};
 
     // region Constants state
     /**
@@ -155,7 +155,6 @@ public class Logger {
         } catch (PrinterExeption ex) {
             throw new LoggerExeption(UMPOSIPLE_PRIT,ex);
         }
-
     }
 
 

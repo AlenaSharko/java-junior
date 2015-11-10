@@ -1,31 +1,44 @@
 package com.acme.edu.unit.printerTests;
 
+import com.acme.edu.exeptions.PrinterExeption;
+import com.acme.edu.logger.Server;
 import com.acme.edu.printers.NetPrinter;
 import com.acme.edu.printers.Printer;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
-import java.awt.print.PrinterException;
-import java.net.Socket;
+import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.concurrent.Executors;
 
-/**
- * Created by alena on 09.11.15.
- */
 public class NetPrinterTest {
+    private Server server;
 
+    @Before
+    public void setUp() {
+        Executors.newSingleThreadExecutor().execute(() -> {
+            server = new Server(4444, Charset.defaultCharset());
+            try {
+                server.start();
+            } catch (PrinterExeption | IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
 
-//
-//    @Test(expected = PrinterException.class)
-//    public void shouldNotPrintInServerWhenServerNotLaunch() throws PrinterException {
-//        Printer sut = new NetPrinter("127.0.0.1", 127, Charset.defaultCharset());
-//        for( int i = 0; i < 51; i++){
-//            sut.print(i + "");
-//        }
-//
-//    }
+    @After
+    public void tearDown() {
+        server.stop();
+    }
 
-//    @Test(expected = PrinterException.class)
-//    public void shouldntconnect() throws PrinterException {
-//        Socket socket = new Socket("500.500.500.500" , 1);
-//    }
+    @Test
+    public void shouldSendAndReceive() throws PrinterExeption, IOException {
+
+        Printer sut = new NetPrinter("127.0.0.1", 4444, Charset.defaultCharset(), 2);
+        sut.print("1");
+        sut.print("2");
+        sut.print("3");
+
+    }
 }

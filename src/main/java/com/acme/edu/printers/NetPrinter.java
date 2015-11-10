@@ -2,11 +2,16 @@ package com.acme.edu.printers;
 
 import com.acme.edu.exeptions.PrinterExeption;
 import com.acme.edu.logger.Logger;
-import java.io.*;
+
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.nio.charset.Charset;
-import java.util.*;
-
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Print message in remote file
@@ -17,8 +22,9 @@ public class NetPrinter implements Printer {
     private int bufferSize;
     private int port;
     private Charset charSet;
+
     private List<String> buffer = new LinkedList<>();
-    private static final String BED = "<<Error>>";
+    private static final String BAD = "<<Error>>";
 
     /**
      * Constructon which allow set charset port and ip addderss
@@ -47,29 +53,34 @@ public class NetPrinter implements Printer {
         try (Socket socket = new Socket(addressIP, port);
              BufferedWriter outStream = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), charSet))) {
             Collections.sort(buffer, (o1, o2) -> {
-                if(o1.contains("ERROR")){
+                if (o1.contains("ERROR")) {
                     return 1;
                 } else {
                     return -1;
                 }
             });
             outStream.write(buffer.toString());
+            outStream.write("");
+            outStream.flush();
             chekServer(socket);
         } catch (IOException e) {
             throw new PrinterExeption("cant send message to server", e);
         }
     }
 
-
-
     private void chekServer(Socket socket) throws PrinterExeption {
-        try(ObjectInputStream inStream = new ObjectInputStream(socket.getInputStream())){
-            while (!inStream.readUTF().isEmpty()){
-                if(inStream.readUTF().equals(BED)) {
-                    throw (PrinterExeption) inStream.readObject();
+        try (ObjectInputStream inStream = new ObjectInputStream(socket.getInputStream())) {
+            while (true) {
+                String stream = inStream.readObject().toString();
+                if (stream == null) {
+                    break;
+                } else {
+                    if (stream.equals(BAD)) {
+                        throw (PrinterExeption) inStream.readObject();
+                    }
+
                 }
             }
-
         } catch (IOException | ClassNotFoundException ex) {
             throw new PrinterExeption("Cant read server", ex);
         }
