@@ -1,6 +1,7 @@
 package com.acme.edu.logger;
 
 import com.acme.edu.exeptions.PrinterExeption;
+import com.acme.edu.printers.Printer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,6 +27,7 @@ public class Server {
         State(String name) {
             this.name = name;
         }
+
         void notification(ObjectOutputStream objStream, Object... objects) throws IOException {
             objStream.writeObject(name);
             for (Object object : objects) {
@@ -39,13 +41,18 @@ public class Server {
 
     private final int port;
     private Charset charSet;
+    private ServerSocket server;
+    private Printer printer;
+
 
     /**
      * Constructor which allow set port
      */
-    public Server(int port, Charset charSet) {
+    public Server(int port, Charset charSet, ServerSocket server, Printer printer) {
         this.port = port;
         this.charSet = charSet;
+        this.server = server;
+        this.printer = printer;
     }
 
     /**
@@ -53,37 +60,38 @@ public class Server {
      * Print message on file
      */
     public void start() throws PrinterExeption, IOException {
-        try (ServerSocket server = new ServerSocket(port, MAX_CLIENTS)) {
-            while (!executorService.isShutdown()) {
-                try {
-                    final Socket client = server.accept();
-                    executorService.execute(() -> {
+        while (!executorService.isShutdown()) {
+            try {
+                final Socket client = server.accept();
+                executorService.execute(() -> {
+                    try {
+                        BufferedReader inStream = new BufferedReader(
+                                new InputStreamReader(client.getInputStream(), charSet));
+                        ObjectOutputStream outStream = new ObjectOutputStream(client.getOutputStream());
                         try {
-                            BufferedReader inStream = new BufferedReader(
-                                    new InputStreamReader(client.getInputStream(), charSet));
-                            ObjectOutputStream outStream = new ObjectOutputStream(client.getOutputStream());
-                            try {
-                                while (!Thread.currentThread().isInterrupted()) {
-                                    String stream = inStream.readLine();
-                                    if (stream.isEmpty()) {
-                                        break;
-                                    }
-                                    outStream.writeObject(stream);
-                                    outStream.writeObject("");
-                                    outStream.flush();
+                            while (!Thread.currentThread().isInterrupted()) {
+                                String stream = inStream.readLine();
+                                if (stream.isEmpty()) {
+                                    break;
                                 }
-                                State.GOOD.notification(outStream);
-                            } catch (IOException e) {
-                                State.BAD.notification(outStream, e);
+                                outStream.writeObject(stream);
+                                outStream.writeObject("");
+                                outStream.flush();
+
+                                printer.print(stream);
+
                             }
-                        } catch (IOException e) {
-                            throw new RejectedExecutionException(e);
+                            State.GOOD.notification(outStream);
+                        } catch (IOException | PrinterExeption e) {
+                            State.BAD.notification(outStream, e);
                         }
-                    });
-                } catch (RejectedExecutionException ex) {
-                    if (!executorService.isShutdown()) {
-                        throw new PrinterExeption(ex.getMessage(), ex);
+                    } catch (IOException e) {
+                        throw new RejectedExecutionException(e);
                     }
+                });
+            } catch (RejectedExecutionException ex) {
+                if (!executorService.isShutdown()) {
+                    throw new PrinterExeption(ex.getMessage(), ex);
                 }
             }
         }
