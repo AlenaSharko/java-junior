@@ -1,8 +1,5 @@
 package com.acme.edu.printers;
 
-import com.acme.edu.exeptions.PrinterExeption;
-import com.acme.edu.logger.Logger;
-
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -12,6 +9,9 @@ import java.nio.charset.Charset;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+
+import com.acme.edu.exeptions.PrinterExeption;
+import com.acme.edu.logger.Logger;
 
 /**
  * Print message in remote file
@@ -43,7 +43,8 @@ public class NetPrinter implements Printer {
     public void print(String message) throws PrinterExeption {
         if (buffer.size() <= bufferSize) {
             buffer.add(message + Logger.SEP);
-        } else {
+        }
+        else {
             flush();
             buffer.add(message + Logger.SEP);
         }
@@ -55,7 +56,8 @@ public class NetPrinter implements Printer {
             Collections.sort(buffer, (o1, o2) -> {
                 if (o1.contains("ERROR")) {
                     return 1;
-                } else {
+                }
+                else {
                     return -1;
                 }
             });
@@ -63,7 +65,8 @@ public class NetPrinter implements Printer {
             outStream.write("");
             outStream.flush();
             chekServer(socket);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throw new PrinterExeption("cant send message to server", e);
         }
     }
@@ -72,16 +75,18 @@ public class NetPrinter implements Printer {
         try (ObjectInputStream inStream = new ObjectInputStream(socket.getInputStream())) {
             while (true) {
                 String stream = inStream.readObject().toString();
-                if (stream == null) {
+                if (stream.isEmpty()) {
                     break;
-                } else {
+                }
+                else {
                     if (stream.equals(BAD)) {
                         throw (PrinterExeption) inStream.readObject();
                     }
 
                 }
             }
-        } catch (IOException | ClassNotFoundException ex) {
+        }
+        catch (IOException | ClassNotFoundException ex) {
             throw new PrinterExeption("Cant read server", ex);
         }
     }

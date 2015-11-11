@@ -2,9 +2,7 @@ package com.acme.edu.printers;
 
 import com.acme.edu.exeptions.PrinterExeption;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.nio.charset.Charset;
 
 /**
@@ -30,7 +28,7 @@ public class FilePrinter implements Printer {
     @Override
     public void print(String message) throws PrinterExeption {
         try (FileOutputStream file = new FileOutputStream(fileName);
-             OutputStreamWriter writer = new OutputStreamWriter(file, charSet)) {
+             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(file, charSet))) {
             writer.write(message);
         } catch (IOException ex) {
             throw new PrinterExeption("Can't write in file", ex);
