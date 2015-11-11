@@ -65,22 +65,26 @@ public class Server {
                         ObjectOutputStream outStream = new ObjectOutputStream(client.getOutputStream());
                         try {
                             while (!Thread.currentThread().isInterrupted()) {
-                                String stream = inStream.readLine();
-                                if (stream == null || stream.isEmpty()) {
-                                    break;
+
+                                String readLine = inStream.readLine();
+                                if (readLine == null || readLine.isEmpty()) {
+                                  break;
                                 }
-                                outStream.writeObject(stream);
+                                outStream.writeObject(readLine);
                                 outStream.writeObject("");
                                 outStream.flush();
-                                printer.print(stream);
+                                printer.print(readLine);
                             }
+
                             State.GOOD.notification(outStream);
                         }
-                        catch (IOException | PrinterExeption e) {
+                        catch (PrinterExeption e) {
+                            e.printStackTrace();
                             State.BAD.notification(outStream, e);
                         }
                     }
                     catch (IOException e) {
+                        e.printStackTrace();
                         throw new RejectedExecutionException(e);
                     }
                 });
